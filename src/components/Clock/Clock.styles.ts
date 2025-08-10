@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ClockWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  transform-origin: center;
 `;
 export const Time = styled.time`
   font-size: var(--text-md);

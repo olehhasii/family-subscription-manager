@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ClockWrapper, Date as StyledDate, Time } from './Clock.styles';
+import { motion, type MotionProps } from 'motion/react';
 
-export default function Clock() {
+type ClockProps = React.HTMLAttributes<HTMLDivElement> & MotionProps;
+
+export default function Clock({ ...rest }: ClockProps) {
   const [timestamp, setTimestamp] = useState(Date.now());
 
   const dateFormatter = new Intl.DateTimeFormat(navigator.language).format;
@@ -38,7 +41,7 @@ export default function Clock() {
   }, []);
 
   return (
-    <ClockWrapper>
+    <ClockWrapper {...rest} as={motion.div}>
       <StyledDate>{dateFormatter(timestamp)}</StyledDate>
       <Time>{timeFormatter(timestamp)}</Time>
     </ClockWrapper>
