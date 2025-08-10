@@ -20,8 +20,8 @@ export default function NavBarIsland() {
       height: 60,
       transition: {
         translateY: { duration: 0.5, type: 'spring', bounce: 0.4 },
-        width: { duration: 0.5, delay: 0.5, ease: 'easeOut' },
-        height: { duration: 0.5, delay: 0.5, ease: 'easeOut' },
+        width: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
+        height: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
         delayChildren: 0.7,
       },
     },
@@ -32,7 +32,7 @@ export default function NavBarIsland() {
       scale: 1,
       filter: 'blur(0px)',
       opacity: 1,
-      transition: { ease: easeOut, duration: 0.5 },
+      transition: { ease: easeOut, duration: 0.3 },
     },
     hidden: {
       scale: 0.5,

@@ -16,3 +16,17 @@ export const StyledActionButton = styled.button<StyledActionButtonProps>`
   outline: none;
   cursor: pointer;
 `;
+
+export const StyledCloseButton = styled.button<StyledActionButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
