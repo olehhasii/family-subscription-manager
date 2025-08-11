@@ -6,7 +6,7 @@ export const StyledIsland = styled.div`
   position: absolute;
   bottom: 70px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: none;
   max-width: 360px;
   /*  width: 100%; */
   min-height: 30px;
