@@ -3,10 +3,14 @@ import infoBgImg from '../../assets/info-bg.png';
 
 import CloseButton from '../Actions/CloseButton';
 
-export default function Info() {
+interface InfoProps {
+  onCloseInfo: () => void;
+}
+
+export default function Info({ onCloseInfo }: InfoProps) {
   return (
     <InfoWrapper>
-      <CloseButton />
+      <CloseButton onClose={onCloseInfo} />
       <InfoImgWrapper>
         <img src={infoBgImg} />
       </InfoImgWrapper>

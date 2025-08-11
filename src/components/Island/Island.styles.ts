@@ -4,7 +4,7 @@ export const StyledIsland = styled.div`
   border-radius: var(--spacing-28);
   padding-inline: var(--spacing-16);
   position: absolute;
-  bottom: 100px;
+  bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
   max-width: 360px;
