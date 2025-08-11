@@ -1,19 +1,11 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.nav`
-  border-radius: var(--spacing-28);
-  padding-inline: var(--spacing-16);
+export const StyledNav = styled.nav`
   display: flex;
-  gap: var(--spacing-16);
+  gap: var(--spacing-24);
   align-items: center;
-  position: absolute;
-  bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 60px;
-  max-width: 360px;
-  background-color: var(--color-dark);
-  color: var(--color-text-primary);
+  padding-top: 8px;
+  padding-bottom: 8px;
 `;
 
 export const Logo = styled.div`
@@ -31,7 +23,7 @@ export const Actions = styled.ul`
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
-  margin-left: auto;
+  margin-left: var(--spacing-36);
   transform-origin: center center;
 `;
 

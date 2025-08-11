@@ -1,15 +1,15 @@
-import { Actions, HorizontalLine, Logo, Wrapper } from './NavBarIslands.styles';
-import ActionButton from '../Actions/ActionButton';
-import InfoIcon from '../../icons/InfoIcon';
-import Clock from '../Clock/Clock';
+import { easeOut } from 'motion';
 import DarkThemeIcon from '../../icons/DarkThemeIcon';
+import InfoIcon from '../../icons/InfoIcon';
 import MoreIcon from '../../icons/MoreIcon';
-import { easeOut, motion } from 'motion/react';
+import ActionButton from '../Actions/ActionButton';
+import Clock from '../Clock/Clock';
+import { Actions, HorizontalLine, Logo, StyledNav } from './NavBar.styles';
+import { motion } from 'motion/react';
 
-export default function NavBarIsland() {
+export default function NavBar() {
   const parentVariants = {
     hidden: {
-      translateX: '-50%',
       translateY: 100,
       width: 40,
       height: 30,
@@ -42,7 +42,7 @@ export default function NavBarIsland() {
   };
 
   return (
-    <Wrapper as={motion.nav} variants={parentVariants} initial="hidden" animate="visible">
+    <StyledNav as={motion.nav} variants={parentVariants} initial="hidden" animate="visible">
       <Logo as={motion.div} variants={childVariants}>
         🎧
       </Logo>
@@ -53,6 +53,6 @@ export default function NavBarIsland() {
         <HorizontalLine />
         <ActionButton icon={<MoreIcon />} />
       </Actions>
-    </Wrapper>
+    </StyledNav>
   );
 }
