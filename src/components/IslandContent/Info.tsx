@@ -10,7 +10,12 @@ interface InfoProps {
 
 export default function Info({ onCloseInfo }: InfoProps) {
   return (
-    <InfoWrapper as={motion.div}>
+    <InfoWrapper
+      as={motion.div}
+      initial={{ width: '360px', height: '60px' }}
+      animate={{ width: '360px', height: '500px' }}
+      exit={{ height: '60px', width: '360px', opacity: 0, filter: 'blur(30px)' }}
+    >
       <CloseButton onClose={onCloseInfo} />
       <InfoImgWrapper>
         <img src={infoBgImg} />

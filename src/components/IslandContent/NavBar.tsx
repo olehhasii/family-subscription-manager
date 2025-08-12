@@ -5,17 +5,18 @@ import MoreIcon from '../../icons/MoreIcon';
 import ActionButton from '../Actions/ActionButton';
 import Clock from '../Clock/Clock';
 import { Actions, HorizontalLine, Logo, StyledNav } from './NavBar.styles';
-import { AnimatePresence, motion } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 
 interface NavBarProps {
   onOpenInfo: () => void;
+  skipIntro: boolean;
 }
 
-export default function NavBar({ onOpenInfo }: NavBarProps) {
-  const parentVariants = {
+export default function NavBar({ onOpenInfo, skipIntro }: NavBarProps) {
+  const parentVariants: Variants = {
     hidden: {
-      width: 40,
-      height: 30,
+      width: skipIntro ? 360 : 40,
+      height: skipIntro ? 60 : 30,
     },
     visible: {
       width: 360,
@@ -24,39 +25,36 @@ export default function NavBar({ onOpenInfo }: NavBarProps) {
         translateY: { duration: 0.5, type: 'spring', bounce: 0.4 },
         width: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
         height: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
-        delayChildren: 0.7,
       },
     },
   };
 
-  const childVariants = {
+  const childVariants: Variants = {
     visible: {
       scale: 1,
       filter: 'blur(0px)',
       opacity: 1,
-      transition: { ease: easeOut, duration: 0.3, delay: 0.7 },
+      transition: { ease: easeOut, duration: 0.3, delay: skipIntro ? 0.15 : 0.7 },
     },
     hidden: {
-      scale: 0.5,
-      filter: 'blur(10px)',
+      scale: 0.1,
+      filter: 'blur(30px)',
       opacity: 0.1,
     },
   };
 
   return (
-    <AnimatePresence>
-      <StyledNav as={motion.nav} variants={parentVariants} initial="hidden" animate="visible">
-        <Logo as={motion.div} variants={childVariants}>
-          🎧
-        </Logo>
-        <Clock variants={childVariants} />
-        <Actions as={motion.ul} variants={childVariants}>
-          <ActionButton icon={<DarkThemeIcon width="30px" height="30px" />} />
-          <ActionButton icon={<InfoIcon />} onClick={onOpenInfo} />
-          <HorizontalLine />
-          <ActionButton icon={<MoreIcon />} />
-        </Actions>
-      </StyledNav>
-    </AnimatePresence>
+    <StyledNav as={motion.nav} variants={parentVariants} initial={'hidden'} animate="visible">
+      <Logo as={motion.div} variants={childVariants}>
+        🎧
+      </Logo>
+      <Clock variants={childVariants} />
+      <Actions as={motion.ul} variants={childVariants}>
+        <ActionButton icon={<DarkThemeIcon width="30px" height="30px" />} />
+        <ActionButton icon={<InfoIcon />} onClick={onOpenInfo} />
+        <HorizontalLine />
+        <ActionButton icon={<MoreIcon />} />
+      </Actions>
+    </StyledNav>
   );
 }

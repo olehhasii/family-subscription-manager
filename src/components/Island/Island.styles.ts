@@ -29,6 +29,6 @@ export const Overlay = styled.div`
   left: 0;
   backdrop-filter: blur(14px);
   width: 100%;
-  background-color: rgb(0 0 0 / 0.8);
+  background-color: rgb(0 0 0 / 0.2);
   height: 100vh;
 `;
