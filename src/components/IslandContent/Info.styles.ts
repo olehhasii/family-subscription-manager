@@ -4,6 +4,7 @@ export const InfoWrapper = styled.div`
   background-color: var(--color-dark);
   border-radius: var(--spacing-28);
   color: var(--color-text-primary);
+  position: relative;
 `;
 
 export const InfoImgWrapper = styled.div`

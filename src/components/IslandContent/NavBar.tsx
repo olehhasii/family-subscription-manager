@@ -34,7 +34,7 @@ export default function NavBar({ onOpenInfo }: NavBarProps) {
       scale: 1,
       filter: 'blur(0px)',
       opacity: 1,
-      transition: { ease: easeOut, duration: 0.3 },
+      transition: { ease: easeOut, duration: 0.3, delay: 0.7 },
     },
     hidden: {
       scale: 0.5,
