@@ -36,12 +36,7 @@ export default function Island() {
   }, []);
 
   return (
-    <Wrapper
-      as={motion.div}
-      style={{ alignItems: status === 'navbar' ? 'end' : 'center' }}
-      transition={{ layout: { duration: 10 } }}
-      layout
-    >
+    <Wrapper as={motion.div} style={{ alignItems: status === 'navbar' ? 'end' : 'center' }} layout>
       {status === 'info' && <Overlay />}
 
       <StyledIsland as={motion.div} variants={islandVariants} initial="initial" animate={status} layout>

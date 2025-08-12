@@ -14,17 +14,26 @@ export default function Info({ onCloseInfo }: InfoProps) {
       as={motion.div}
       initial={{ width: '360px', height: '60px' }}
       animate={{ width: '360px', height: '500px' }}
-      exit={{ height: '60px', width: '360px', opacity: 0, filter: 'blur(30px)' }}
+      exit={{ height: '77px', width: '360px', opacity: 0, filter: 'blur(30px)' }}
     >
       <CloseButton onClose={onCloseInfo} />
-      <InfoImgWrapper>
+      <InfoImgWrapper
+        as={motion.div}
+        initial={{ filter: 'blur(30px)', opacity: 0 }}
+        animate={{ filter: 'blur(0px)', opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.4 }}
+      >
         <img src={infoBgImg} />
       </InfoImgWrapper>
-      <p>
+      <motion.p
+        initial={{ filter: 'blur(30px)', opacity: 0 }}
+        animate={{ filter: 'blur(0px)', opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.4 }}
+      >
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci ipsam perspiciatis harum consequuntur eaque
         numquam itaque, facilis sint dignissimos voluptas facere odit soluta. Odit, possimus quod? Optio maiores
         corporis sint.
-      </p>
+      </motion.p>
     </InfoWrapper>
   );
 }

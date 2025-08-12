@@ -29,5 +29,6 @@ export const StyledCloseButton = styled.button<StyledActionButtonProps>`
   border-radius: 100%;
   border: none;
   outline: none;
+  z-index: 20;
   cursor: pointer;
 `;

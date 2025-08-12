@@ -16,5 +16,7 @@ export const InfoImgWrapper = styled.div`
     border-top-right-radius: var(--spacing-28);
     border-top-left-radius: var(--spacing-28);
     width: 360px;
+    height: 240px;
+    object-fit: cover;
   }
 `;
