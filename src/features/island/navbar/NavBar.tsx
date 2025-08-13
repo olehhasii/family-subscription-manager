@@ -1,11 +1,12 @@
 import { easeOut } from 'motion';
-import DarkThemeIcon from '../../icons/DarkThemeIcon';
-import InfoIcon from '../../icons/InfoIcon';
-import MoreIcon from '../../icons/MoreIcon';
-import ActionButton from '../Actions/ActionButton';
-import Clock from '../Clock/Clock';
+import DarkThemeIcon from '../../../icons/DarkThemeIcon';
+import InfoIcon from '../../../icons/InfoIcon';
+import MoreIcon from '../../../icons/MoreIcon';
+
+import Clock from './Clock';
 import { Actions, HorizontalLine, Logo, StyledNav } from './NavBar.styles';
 import { motion, type Variants } from 'motion/react';
+import ActionButton from '../../../ui/ActionButton';
 
 interface NavBarProps {
   onOpenInfo: () => void;

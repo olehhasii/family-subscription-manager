@@ -1,8 +1,9 @@
 import { AnimatePresence, motion, type Variants } from 'motion/react';
 import { Overlay, StyledIsland, Wrapper } from './Island.styles';
-import NavBar from '../IslandContent/NavBar';
-import Info from '../IslandContent/Info';
+
 import { useEffect, useRef, useState } from 'react';
+import NavBar from './navbar/NavBar';
+import Info from './info/Info';
 
 export default function Island() {
   const [status, setStatus] = useState<'navbar' | 'info' | 'menu'>('navbar');

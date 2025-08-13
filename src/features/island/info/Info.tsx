@@ -1,8 +1,8 @@
-import { InfoImgWrapper, InfoWrapper } from './Info.styles';
-import infoBgImg from '../../assets/info-bg.png';
+import infoBgImg from '../../../assets/info-bg.png';
 
-import CloseButton from '../Actions/CloseButton';
 import { motion } from 'motion/react';
+import CloseButton from '../../../ui/CloseButton';
+import { InfoImgWrapper, InfoWrapper } from './Info.styles';
 
 interface InfoProps {
   onCloseInfo: () => void;

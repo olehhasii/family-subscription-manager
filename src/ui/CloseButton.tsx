@@ -1,4 +1,4 @@
-import CloseIcon from '../../icons/CloseIcon';
+import CloseIcon from '../icons/CloseIcon';
 import { StyledCloseButton } from './ActionButton.styles';
 
 interface CloseButtonProps {

@@ -1,5 +1,4 @@
-import Island from './components/Island/Island';
-
+import Island from './features/island/Island';
 import GlobalStyle from './styles/GlobalStyles';
 
 function App() {
