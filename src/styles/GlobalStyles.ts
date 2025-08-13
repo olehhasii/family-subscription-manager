@@ -75,6 +75,7 @@ const GlobalStyle = styled.createGlobalStyle`
     --color-gray: #757575;
     --color-text-primary: #ffffff;
     --color-text-secondary: #b7b7b7ff;
+    --color-text-dark: #000000;
 
     --text-xs: 0.625rem; /* 10px */
     --text-s: 0.75rem; /* 12px */

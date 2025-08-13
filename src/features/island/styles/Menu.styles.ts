@@ -26,6 +26,10 @@ export const StyledMenuButton = styled.button`
   background-color: transparent;
 
   & span:nth-of-type(2) {
-    padding-left: 6px;
+    font-size: var(--text-s);
+    font-weight: 700;
+    color: var(--color-text-dark);
+    white-space: nowrap;
+    line-height: 1;
   }
 `;

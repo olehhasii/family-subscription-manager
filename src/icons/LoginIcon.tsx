@@ -1,8 +1,18 @@
-import type { IconComponentProps } from '../types/types';
+import { motion } from 'motion/react';
 
-export default function LoginIcon({ size = 40, color = 'currentColor', ...props }: IconComponentProps) {
+import type { MotionIconComponentProps } from '../types/types';
+
+export default function LoginIcon({ size = 40, color = 'currentColor', variants, ...props }: MotionIconComponentProps) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill={color} viewBox="0 0 48 48" {...props}>
+    <motion.svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      fill={color}
+      viewBox="0 0 48 48"
+      variants={variants}
+      {...props}
+    >
       <title>lock-open-source</title>
       <g id="Layer_2" data-name="Layer 2">
         <g id="invisible_box" data-name="invisible box">
@@ -19,6 +29,6 @@ export default function LoginIcon({ size = 40, color = 'currentColor', ...props 
           <path d="M33,38H27a2,2,0,0,1,0-4h6a2,2,0,0,1,0,4Z" />
         </g>
       </g>
-    </svg>
+    </motion.svg>
   );
 }
