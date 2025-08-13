@@ -8,7 +8,7 @@ interface CloseButtonProps {
 export default function CloseButton({ onClose }: CloseButtonProps) {
   return (
     <StyledCloseButton onClick={onClose}>
-      <CloseIcon width="20px" height="20px" />
+      <CloseIcon size="20px" />
     </StyledCloseButton>
   );
 }

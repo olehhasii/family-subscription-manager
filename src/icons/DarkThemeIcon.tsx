@@ -1,8 +1,16 @@
 import type { IconComponentProps } from '../types/types';
 
-export default function DarkThemeIcon({ width = '40px', height = '40px' }: IconComponentProps) {
+export default function DarkThemeIcon({ size = 40, color = 'currentColor', ...props }: IconComponentProps) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 48 48" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 48 48"
+      aria-hidden="true"
+      fill={color}
+      {...props}
+    >
       <path
         d="M31.75,6.479c6.7339,3.8881,10.3177,11.5721,8.969,19.23-1.3496,7.6616-7.3484,13.6604-15.01,15.01-7.6579,1.3487-15.3419-2.2351-19.23-8.969"
         fill="none"

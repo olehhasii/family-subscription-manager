@@ -1,8 +1,8 @@
 import type { IconComponentProps } from '../types/types';
 
-export default function CloseIcon({ width = '40px', height = '40px' }: IconComponentProps) {
+export default function CloseIcon({ size = 40, color = 'currentColor', ...props }: IconComponentProps) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill={color} {...props}>
       <g id="Menu / Close_MD">
         <path
           id="Vector"

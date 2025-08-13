@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ClockWrapper, Date as StyledDate, Time } from './Clock.styles';
 import { motion, type MotionProps } from 'motion/react';
+import { ClockWrapper, Date as StyledDate, Time } from '../styles/Clock.styles';
 
 type ClockProps = React.HTMLAttributes<HTMLDivElement> & MotionProps;
 

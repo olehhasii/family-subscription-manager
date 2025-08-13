@@ -4,9 +4,10 @@ import InfoIcon from '../../../icons/InfoIcon';
 import MoreIcon from '../../../icons/MoreIcon';
 
 import Clock from './Clock';
-import { Actions, HorizontalLine, Logo, StyledNav } from './NavBar.styles';
+
 import { motion, type Variants } from 'motion/react';
 import ActionButton from '../../../ui/ActionButton';
+import { Actions, HorizontalLine, Logo, StyledNav } from '../styles/NavBar.styles';
 
 interface NavBarProps {
   onOpenInfo: () => void;
@@ -51,7 +52,7 @@ export default function NavBar({ onOpenInfo, skipIntro }: NavBarProps) {
       </Logo>
       <Clock variants={childVariants} />
       <Actions as={motion.ul} variants={childVariants}>
-        <ActionButton icon={<DarkThemeIcon width="30px" height="30px" />} />
+        <ActionButton icon={<DarkThemeIcon size="30px" />} />
         <ActionButton icon={<InfoIcon />} onClick={onOpenInfo} />
         <HorizontalLine />
         <ActionButton icon={<MoreIcon />} />
