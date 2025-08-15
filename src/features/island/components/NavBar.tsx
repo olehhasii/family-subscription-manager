@@ -11,10 +11,11 @@ import { Actions, HorizontalLine, Logo, StyledNav } from '../styles/NavBar.style
 
 interface NavBarProps {
   onOpenInfo: () => void;
+  onOpenMenu: () => void;
   skipIntro: boolean;
 }
 
-export default function NavBar({ onOpenInfo, skipIntro }: NavBarProps) {
+export default function NavBar({ onOpenInfo, skipIntro, onOpenMenu }: NavBarProps) {
   const parentVariants: Variants = {
     hidden: {
       width: skipIntro ? 360 : 40,
@@ -55,7 +56,7 @@ export default function NavBar({ onOpenInfo, skipIntro }: NavBarProps) {
         <ActionButton icon={<DarkThemeIcon size="30px" />} />
         <ActionButton icon={<InfoIcon />} onClick={onOpenInfo} />
         <HorizontalLine />
-        <ActionButton icon={<MoreIcon />} />
+        <ActionButton icon={<MoreIcon />} onClick={onOpenMenu} />
       </Actions>
     </StyledNav>
   );

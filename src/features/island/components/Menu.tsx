@@ -11,9 +11,10 @@ interface MenuButtonProps {
   icon: React.ReactNode;
   content: string;
   contentWidth?: number | string;
+  onClick?: () => void;
 }
 
-const MenuButton = ({ icon, content, contentWidth = 60 }: MenuButtonProps) => {
+const MenuButton = ({ icon, content, contentWidth = 60, onClick }: MenuButtonProps) => {
   const buttonVariants: Variants = {
     hovered: {
       backgroundColor: 'white',
@@ -34,7 +35,7 @@ const MenuButton = ({ icon, content, contentWidth = 60 }: MenuButtonProps) => {
 
   return (
     <li>
-      <StyledMenuButton as={motion.button} variants={buttonVariants} whileHover="hovered">
+      <StyledMenuButton as={motion.button} variants={buttonVariants} whileHover="hovered" onClick={onClick}>
         <span>{icon}</span>
         <motion.span variants={contentVariants} initial={{ scale: 0, opacity: 0, filter: 'blur(10px)', width: 0 }}>
           {content}
@@ -44,7 +45,7 @@ const MenuButton = ({ icon, content, contentWidth = 60 }: MenuButtonProps) => {
   );
 };
 
-export default function Menu() {
+export default function Menu({ onCloseMenu }: { onCloseMenu: () => void }) {
   const iconVariants: Variants = {
     hovered: { fill: '#000000' },
   };
@@ -55,6 +56,7 @@ export default function Menu() {
         icon={<BackIcon size={24} color="#ffffff" variants={iconVariants} />}
         content="Back"
         contentWidth={50}
+        onClick={onCloseMenu}
       />
       <MenuButton
         icon={<GithubIcon size={24} color="#ffffff" variants={iconVariants} />}
