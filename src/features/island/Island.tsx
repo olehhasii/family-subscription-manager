@@ -17,8 +17,8 @@ export default function Island() {
       y: -100,
       transition: {
         y: { duration: 0.5, type: 'spring', bounce: 0.4 },
-        width: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
-        height: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
+        /* width: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
+        height: { duration: 0.3, delay: 0.5, ease: 'easeOut' }, */
       },
     },
     info: {

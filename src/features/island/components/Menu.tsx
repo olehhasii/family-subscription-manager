@@ -5,7 +5,7 @@ import GithubIcon from '../../../icons/GithubIcon';
 import LoginIcon from '../../../icons/LoginIcon';
 
 import { StyledMenu, StyledMenuButton } from '../styles/Menu.styles';
-import { motion } from 'motion/react';
+import { easeOut, motion } from 'motion/react';
 
 interface MenuButtonProps {
   icon: React.ReactNode;
@@ -16,6 +16,23 @@ interface MenuButtonProps {
 
 const MenuButton = ({ icon, content, contentWidth = 60, onClick }: MenuButtonProps) => {
   const buttonVariants: Variants = {
+    hidden: {
+      scale: 0,
+      filter: 'blur(10px)',
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      filter: 'blur(0px)',
+      opacity: 1,
+      transition: { ease: easeOut, duration: 0.3, delay: 0.3 },
+    },
+    exit: {
+      scale: 0,
+      filter: 'blur(10px)',
+      opacity: 0,
+      transition: { ease: easeOut, duration: 0.2 },
+    },
     hovered: {
       backgroundColor: 'white',
     },
@@ -35,7 +52,15 @@ const MenuButton = ({ icon, content, contentWidth = 60, onClick }: MenuButtonPro
 
   return (
     <li>
-      <StyledMenuButton as={motion.button} variants={buttonVariants} whileHover="hovered" onClick={onClick}>
+      <StyledMenuButton
+        as={motion.button}
+        variants={buttonVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover="hovered"
+        exit="exit"
+        onClick={onClick}
+      >
         <span>{icon}</span>
         <motion.span variants={contentVariants} initial={{ scale: 0, opacity: 0, filter: 'blur(10px)', width: 0 }}>
           {content}
@@ -50,8 +75,22 @@ export default function Menu({ onCloseMenu }: { onCloseMenu: () => void }) {
     hovered: { fill: '#000000' },
   };
 
+  const menuVariants: Variants = {
+    initial: {
+      width: 360,
+    },
+    animate: {
+      width: 'auto',
+      transition: { ease: easeOut, duration: 0.3 },
+    },
+    exit: {
+      width: 360,
+      transition: { ease: easeOut, duration: 0.2, delay: 0.2 },
+    },
+  };
+
   return (
-    <StyledMenu>
+    <StyledMenu as={motion.ul} variants={menuVariants} initial="initial" animate="animate" exit="exit">
       <MenuButton
         icon={<BackIcon size={24} color="#ffffff" variants={iconVariants} />}
         content="Back"
