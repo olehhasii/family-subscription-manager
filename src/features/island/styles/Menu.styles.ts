@@ -22,8 +22,12 @@ export const StyledMenuButton = styled.button`
   height: 40px;
   border-radius: 999999px;
   cursor: pointer;
-
+  text-decoration: none;
   background-color: transparent;
+
+  &:visited {
+    text-decoration: none;
+  }
 
   & span:nth-of-type(2) {
     font-size: var(--text-s);
@@ -31,5 +35,6 @@ export const StyledMenuButton = styled.button`
     color: var(--color-text-dark);
     white-space: nowrap;
     line-height: 1;
+    text-align: center;
   }
 `;

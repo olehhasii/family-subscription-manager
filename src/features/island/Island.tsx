@@ -5,6 +5,7 @@ import { Overlay, StyledIsland, Wrapper } from './styles/Island.styles';
 import NavBar from './components/NavBar';
 import Info from './components/Info';
 import Menu from './components/Menu';
+import Board from '../board/Board';
 
 type Statuses = 'menu' | 'info' | 'navbar';
 

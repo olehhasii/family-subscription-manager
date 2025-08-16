@@ -73,6 +73,8 @@ const GlobalStyle = styled.createGlobalStyle`
     --color-light: #fafafa;
     --color-dark: #100c08;
     --color-gray: #757575;
+    --color-bg-secondary: #31302fff;
+
     --color-text-primary: #ffffff;
     --color-text-secondary: #b7b7b7ff;
     --color-text-dark: #000000;
@@ -81,6 +83,8 @@ const GlobalStyle = styled.createGlobalStyle`
     --text-s: 0.75rem; /* 12px */
     --text-md: 0.875rem; /* 14px */
     --text-base: 1rem; /* 16px */
+    --text-l: 1.25rem; /* 20px */
+    --text-xl: 1.5rem; /* 24px */
 
     --spacing-0: 0; /* 0px */
     --spacing-1: 0.0625rem; /* 1px */

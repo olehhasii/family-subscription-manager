@@ -4,17 +4,19 @@ import ContactMeIcon from '../../../icons/ContactMeIcon';
 import GithubIcon from '../../../icons/GithubIcon';
 import LoginIcon from '../../../icons/LoginIcon';
 
-import { StyledMenu, StyledMenuButton } from '../styles/Menu.styles';
+import { MenuItem, StyledMenu, StyledMenuButton } from '../styles/Menu.styles';
 import { easeOut, motion } from 'motion/react';
 
 interface MenuButtonProps {
   icon: React.ReactNode;
+  as?: 'button' | 'link';
   content: string;
   contentWidth?: number | string;
   onClick?: () => void;
+  link?: string;
 }
 
-const MenuButton = ({ icon, content, contentWidth = 60, onClick }: MenuButtonProps) => {
+const MenuButton = ({ icon, content, contentWidth = 60, onClick, as = 'button', link }: MenuButtonProps) => {
   const buttonVariants: Variants = {
     hidden: {
       scale: 0,
@@ -51,22 +53,23 @@ const MenuButton = ({ icon, content, contentWidth = 60, onClick }: MenuButtonPro
   };
 
   return (
-    <li>
+    <MenuItem>
       <StyledMenuButton
-        as={motion.button}
+        as={as === 'button' ? motion.button : motion.a}
+        href={as === 'link' ? link : undefined}
+        onClick={as === 'button' ? onClick : undefined}
         variants={buttonVariants}
         initial="hidden"
         animate="visible"
         whileHover="hovered"
         exit="exit"
-        onClick={onClick}
       >
         <span>{icon}</span>
         <motion.span variants={contentVariants} initial={{ scale: 0, opacity: 0, filter: 'blur(10px)', width: 0 }}>
           {content}
         </motion.span>
       </StyledMenuButton>
-    </li>
+    </MenuItem>
   );
 };
 
@@ -100,11 +103,15 @@ export default function Menu({ onCloseMenu }: { onCloseMenu: () => void }) {
       <MenuButton
         icon={<GithubIcon size={24} color="#ffffff" variants={iconVariants} />}
         contentWidth={80}
+        as="link"
+        link="https://github.com/olehhasii/family-subscription-manager"
         content="Github Repo"
       />
       <MenuButton
         icon={<ContactMeIcon size={24} color="#ffffff" variants={iconVariants} />}
         contentWidth={85}
+        as="link"
+        link="https://www.linkedin.com/in/oleh-hasii/"
         content="Contact me"
       />
       <MenuButton
