@@ -5,7 +5,6 @@ import { Overlay, StyledIsland, Wrapper } from './styles/Island.styles';
 import NavBar from './components/NavBar';
 import Info from './components/Info';
 import Menu from './components/Menu';
-import Board from '../board/Board';
 
 type Statuses = 'menu' | 'info' | 'navbar';
 
@@ -13,9 +12,9 @@ export default function Island() {
   const [status, setStatus] = useState<Statuses>('navbar');
 
   const islandVariants: Variants = {
-    initial: { y: 200 },
+    initial: { y: -200 },
     navbar: {
-      y: -100,
+      y: 0,
       transition: {
         y: { duration: 0.5, type: 'spring', bounce: 0.4 },
         /* width: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
@@ -26,7 +25,7 @@ export default function Island() {
       y: 0,
     },
     menu: {
-      y: -100,
+      y: 0,
     },
   };
 
@@ -43,7 +42,7 @@ export default function Island() {
     hasPlayedIntroRef.current = true;
   }, []);
 
-  return (
+  /*  return (
     <Wrapper as={motion.div} style={{ alignItems: status === 'navbar' || status === 'menu' ? 'end' : 'center' }} layout>
       {status === 'info' && <Overlay />}
 
@@ -62,5 +61,25 @@ export default function Island() {
         </AnimatePresence>
       </StyledIsland>
     </Wrapper>
+  ); */
+  return (
+    <>
+      {status === 'info' && <Overlay />}
+
+      <StyledIsland as={motion.div} variants={islandVariants} initial="initial" animate={status} layout>
+        <AnimatePresence mode="wait">
+          {status === 'navbar' && (
+            <NavBar
+              onOpenInfo={() => handleChangeStatus('info')}
+              onOpenMenu={() => handleChangeStatus('menu')}
+              key="navbar"
+              skipIntro={hasPlayedIntroRef.current}
+            />
+          )}
+          {status === 'info' && <Info onCloseInfo={handleShowNavbar} key="info" />}
+          {status === 'menu' && <Menu key="menu" onCloseMenu={handleShowNavbar} />}
+        </AnimatePresence>
+      </StyledIsland>
+    </>
   );
 }

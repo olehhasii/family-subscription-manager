@@ -7,11 +7,13 @@ import {
   UserName,
 } from '../styles/BoardUser.styles';
 
+import avatarImg from '../../../assets/avatar2.png';
+
 export default function BoardUser() {
   return (
     <StyledBoardUser>
       <UserHeader>
-        <span>😎</span>
+        <img src={avatarImg} alt="User" />
         <UserInfo>
           <UserName>Oleh</UserName>
           <span>Up to date</span>

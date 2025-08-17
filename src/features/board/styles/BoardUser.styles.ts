@@ -16,6 +16,12 @@ export const UserHeader = styled.div`
   display: flex;
   align-items: center;
   gap: var(--spacing-8);
+
+  & > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 999999px;
+  }
 `;
 
 export const UserInfo = styled.div`

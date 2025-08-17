@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledBoard = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  z-index: 10; */
   background-color: var(--color-dark);
   color: var(--color-text-primary);
   padding: var(--spacing-8) var(--spacing-16) var(--spacing-16);
