@@ -25,7 +25,6 @@ export default function NavBar({ onOpenInfo, skipIntro, onOpenMenu }: NavBarProp
       width: 360,
       height: 60,
       transition: {
-        translateY: { duration: 0.5, type: 'spring', bounce: 0.4 },
         width: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
         height: { duration: 0.3, delay: 0.5, ease: 'easeOut' },
       },
