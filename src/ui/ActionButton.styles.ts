@@ -22,8 +22,8 @@ export const StyledCloseButton = styled.button<StyledActionButtonProps>`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 25px;
-  right: 30px;
+  top: 5px;
+  right: 15px;
   width: 25px;
   height: 25px;
   border-radius: 100%;

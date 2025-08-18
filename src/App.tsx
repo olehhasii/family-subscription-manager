@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <Wrapper>
-        <Island />
         <Board />
+        <Island />
       </Wrapper>
       <GlobalStyle />
     </>

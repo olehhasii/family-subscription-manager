@@ -4,7 +4,13 @@ export const InfoWrapper = styled.div`
   background-color: var(--color-dark);
   border-radius: var(--spacing-28);
   color: var(--color-text-primary);
-  position: relative;
+  position: absolute;
+  border-radius: var(--spacing-28);
+  padding-inline: var(--spacing-16);
+  max-width: 360px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const InfoImgWrapper = styled.div`

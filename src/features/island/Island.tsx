@@ -1,15 +1,17 @@
 import { AnimatePresence, motion, type Variants } from 'motion/react';
 
 import { useEffect, useRef, useState } from 'react';
-import { Overlay, StyledIsland } from './styles/Island.styles';
+import { StyledIsland } from './styles/Island.styles';
 import NavBar from './components/NavBar';
 import Info from './components/Info';
 import Menu from './components/Menu';
+import { createPortal } from 'react-dom';
 
 type Statuses = 'menu' | 'info' | 'navbar';
 
 export default function Island() {
   const [status, setStatus] = useState<Statuses>('navbar');
+  const [isInfoOpened, setIsInfoOpened] = useState(false);
 
   const islandVariants: Variants = {
     initial: { y: -200 },
@@ -42,21 +44,25 @@ export default function Island() {
 
   return (
     <>
-      {status === 'info' && <Overlay />}
-
       <StyledIsland as={motion.div} variants={islandVariants} initial="initial" animate={status} layout>
         <AnimatePresence mode="wait">
           {status === 'navbar' && (
             <NavBar
-              onOpenInfo={() => handleChangeStatus('info')}
+              onOpenInfo={() => setIsInfoOpened(true)}
               onOpenMenu={() => handleChangeStatus('menu')}
               key="navbar"
               skipIntro={hasPlayedIntroRef.current}
             />
           )}
-          {status === 'info' && <Info onCloseInfo={handleShowNavbar} key="info" />}
+
           {status === 'menu' && <Menu key="menu" onCloseMenu={handleShowNavbar} />}
         </AnimatePresence>
+        {createPortal(
+          <AnimatePresence mode="wait" initial={false}>
+            {isInfoOpened && <Info key="info" onCloseInfo={() => setIsInfoOpened(false)} />}
+          </AnimatePresence>,
+          document.getElementById('info') as Element
+        )}
       </StyledIsland>
     </>
   );

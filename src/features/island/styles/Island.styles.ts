@@ -8,7 +8,6 @@ export const StyledIsland = styled.div`
   min-height: 30px;
   background-color: var(--color-dark);
   color: var(--color-text-primary);
-  z-index: 20;
 `;
 
 export const Wrapper = styled.div`
