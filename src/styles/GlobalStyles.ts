@@ -76,15 +76,22 @@ const GlobalStyle = styled.createGlobalStyle`
 
     /*  --color-bg-main: #100c08;
     --color-bg-secondary: #1f1c19; // #1B1816 */
+
     --color-bg-main: #181816;
     --color-bg-secondary: #282724;
+
+    /* --color-bg-main: #0c0803;
+    --color-bg-secondary: #1d1a18; */
+
     --color-red: red;
+    --color-green: green;
+    --color-yellow: yellow;
 
     --color-text-primary: #ffffff;
     --color-text-secondary: #b7b7b7ff;
     --color-text-dark: #000000;
 
-    --border: 1px solid rgba(255, 255, 255, 0.2);
+    --border: 1px solid rgba(255, 255, 255, 0.1);
 
     --text-xs: 0.625rem; /* 10px */
     --text-s: 0.75rem; /* 12px */
