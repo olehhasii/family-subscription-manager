@@ -23,7 +23,7 @@ const GlobalStyle = styled.createGlobalStyle`
     }
   }
   body {
-    background-color: var(--color-light);
+    background-color: var(--color-bg-secondary);
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
@@ -73,11 +73,18 @@ const GlobalStyle = styled.createGlobalStyle`
     --color-light: #fafafa;
     --color-dark: #100c08;
     --color-gray: #757575;
-    --color-bg-secondary: #31302fff;
+
+    /*  --color-bg-main: #100c08;
+    --color-bg-secondary: #1f1c19; // #1B1816 */
+    --color-bg-main: #181816;
+    --color-bg-secondary: #282724;
+    --color-red: red;
 
     --color-text-primary: #ffffff;
     --color-text-secondary: #b7b7b7ff;
     --color-text-dark: #000000;
+
+    --border: 1px solid rgba(255, 255, 255, 0.2);
 
     --text-xs: 0.625rem; /* 10px */
     --text-s: 0.75rem; /* 12px */

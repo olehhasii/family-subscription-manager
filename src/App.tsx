@@ -1,3 +1,4 @@
+import AdminPanel from './features/adminPanel/AdminPanel';
 import Board from './features/board/Board';
 import Island from './features/island/Island';
 import { Wrapper } from './styles/GeneralComponents.Styles';
@@ -7,8 +8,9 @@ function App() {
   return (
     <>
       <Wrapper>
-        <Board />
-        <Island />
+        {/*  <Board />
+        <Island /> */}
+        <AdminPanel />
       </Wrapper>
       <GlobalStyle />
     </>
