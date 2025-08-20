@@ -5,6 +5,8 @@ import PanelSide from './components/PanelSide';
 import Member from './components/Member';
 import PanelContent from './components/PanelContent';
 
+import CreateMemberForm from '../members/components/CreateMemberForm';
+
 export default function AdminPanel() {
   return (
     <StyledAdminPanel>
@@ -19,7 +21,11 @@ export default function AdminPanel() {
           <Member />
         </PanelMembersList>
       </PanelSide>
-      <PanelContent></PanelContent>
+      <PanelContent>
+        <div>
+          <CreateMemberForm />
+        </div>
+      </PanelContent>
     </StyledAdminPanel>
   );
 }

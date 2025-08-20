@@ -83,8 +83,8 @@ const GlobalStyle = styled.createGlobalStyle`
     /* --color-bg-main: #0c0803;
     --color-bg-secondary: #1d1a18; */
 
-    --color-red: red;
-    --color-green: green;
+    --color-red: #660708;
+    --color-green: #1b4332;
     --color-yellow: yellow;
 
     --color-text-primary: #ffffff;

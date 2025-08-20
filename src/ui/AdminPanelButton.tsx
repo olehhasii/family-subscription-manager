@@ -15,10 +15,12 @@ type Variant = keyof typeof buttonVariants;
 interface AdminPanelButtonProps {
   label: string;
   variant?: Variant;
+  /* onClick: () => void; */
 }
 
 const StyledAdminPanelButton = styled.button<{ $variant: Variant }>`
   width: 100%;
+  min-width: 150px;
   padding: var(--spacing-8) var(--spacing-16);
   border-radius: var(--spacing-12);
   background-color: ${(props) => buttonVariants[props.$variant].color};
