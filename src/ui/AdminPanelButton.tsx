@@ -15,7 +15,8 @@ type Variant = keyof typeof buttonVariants;
 interface AdminPanelButtonProps {
   label: string;
   variant?: Variant;
-  /* onClick: () => void; */
+  type?: 'button' | 'submit' | 'reset' | undefined;
+  onClick: () => void;
 }
 
 const StyledAdminPanelButton = styled.button<{ $variant: Variant }>`
@@ -30,6 +31,15 @@ const StyledAdminPanelButton = styled.button<{ $variant: Variant }>`
   cursor: pointer;
 `;
 
-export default function AdminPanelButton({ label, variant = 'default' }: AdminPanelButtonProps) {
-  return <StyledAdminPanelButton $variant={variant}>{label}</StyledAdminPanelButton>;
+export default function AdminPanelButton({
+  label,
+  variant = 'default',
+  type = 'button',
+  onClick,
+}: AdminPanelButtonProps) {
+  return (
+    <StyledAdminPanelButton $variant={variant} type={type} onClick={onClick}>
+      {label}
+    </StyledAdminPanelButton>
+  );
 }

@@ -1,31 +1,33 @@
-import AdminPanelButton from '../../ui/AdminPanelButton';
-
-import { PanelMembersList, StyledAdminPanel } from './styles/AdminPanel.styles';
+import { StyledAdminPanel } from './styles/AdminPanel.styles';
 import PanelSide from './components/PanelSide';
-import Member from './components/Member';
+
 import PanelContent from './components/PanelContent';
 
-import CreateMemberForm from '../members/components/CreateMemberForm';
+import { useState } from 'react';
+
+import BoardSide from './components/BoardSide';
+import MembersSide from './components/MembersSide';
 
 export default function AdminPanel() {
+  const [activeTab, setActiveTab] = useState<'members' | 'board'>('members');
+  const [activeMembersContent, setActiveMembersContent] = useState<'add' | 'edit' | 'none'>('none');
+
+  const handleChangeActiveTab = (tab: 'members' | 'board') => {
+    setActiveTab(tab);
+  };
+
+  const handleChangeMembersContent = (content: 'add' | 'edit' | 'none') => {
+    setActiveMembersContent(content);
+  };
+
   return (
     <StyledAdminPanel>
-      <PanelSide>
-        <AdminPanelButton label="+ Add Member" />
-        <PanelMembersList>
-          <Member />
-          <Member />
-          <Member />
-          <Member />
-          <Member />
-          <Member />
-        </PanelMembersList>
+      <PanelSide onSetActiveTab={handleChangeActiveTab} activeTab={activeTab}>
+        {activeTab === 'board' && <BoardSide />}
+        {activeTab === 'members' && <MembersSide onChangeContent={handleChangeMembersContent} />}
       </PanelSide>
-      <PanelContent>
-        <div>
-          <CreateMemberForm />
-        </div>
-      </PanelContent>
+
+      {activeTab === 'members' && <PanelContent activeContent={activeMembersContent} />}
     </StyledAdminPanel>
   );
 }

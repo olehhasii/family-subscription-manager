@@ -10,11 +10,12 @@ export const PanelNav = styled.div`
   gap: var(--spacing-12);
 `;
 
-export const PanelNavButton = styled.button`
+export const PanelNavButton = styled.button<{ $active: boolean }>`
   background: none;
   border: none;
   outline: none;
-  color: var(--color-text-primary);
+  color: ${(props) => (props.$active ? 'var(--color-text-primary)' : 'var(--color-text-secondary)')};
+  text-decoration: ${(props) => (props.$active ? 'underline' : 'none')};
   cursor: pointer;
 `;
 

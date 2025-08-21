@@ -2,7 +2,11 @@ import { MemberBadge, MemberDate, MemberItem, MemberItemInfo, MemberName } from 
 
 import testImg from '../../../assets/avatar2.png';
 
-export default function Member() {
+interface MemberProps {
+  onClick: () => void;
+}
+
+export default function Member({ onClick }: MemberProps) {
   const badgeVariants = {
     success: {
       color: 'var(--color-green)',
@@ -16,7 +20,7 @@ export default function Member() {
   };
 
   return (
-    <MemberItem>
+    <MemberItem onClick={onClick}>
       <MemberItemInfo>
         <img src={testImg} />
         <div>
