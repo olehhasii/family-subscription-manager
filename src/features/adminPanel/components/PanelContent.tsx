@@ -11,7 +11,7 @@ export default function PanelContent({ activeContent }: PanelContentProps) {
     <StyledPanelContent>
       {activeContent === 'add' && <CreateMemberForm />}
       {activeContent === 'edit' && <EditMemberForm />}
-      {activeContent === 'none' && <div>Select Something</div>}
+      {activeContent === 'none' && <span>Select member to edit or create new one</span>}
     </StyledPanelContent>
   );
 }

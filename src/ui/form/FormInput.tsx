@@ -6,6 +6,7 @@ interface InputProps {
   type?: HTMLInputTypeAttribute;
   id: string;
   name: string;
+  placeholder?: string;
 }
 
 const FormInputContainer = styled.div`
@@ -14,6 +15,7 @@ const FormInputContainer = styled.div`
 
   & > label {
     color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-4);
   }
 
   & > input {
@@ -27,11 +29,11 @@ const FormInputContainer = styled.div`
   }
 `;
 
-export default function FormInput({ label, type = 'text', name, id }: InputProps) {
+export default function FormInput({ label, type = 'text', name, id, placeholder = '' }: InputProps) {
   return (
     <FormInputContainer>
       <label htmlFor={id}>{label}</label>
-      <input type={type} id={id} name={name} />
+      <input type={type} id={id} name={name} placeholder={placeholder} />
     </FormInputContainer>
   );
 }
