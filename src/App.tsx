@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Wrapper>
-        {/*  <Board />
+        {/* <Board />
         <Island /> */}
         <AdminPanel />
       </Wrapper>
