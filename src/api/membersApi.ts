@@ -57,7 +57,23 @@ export async function getMemberById(id: string) {
 }
 
 export async function deleteMemberById(id: string) {
+  try {
+    const { data: member } = await supabase.from('Members').select().eq('id', id);
+    deleteAvatar(member?.[0].avatarUrl);
+  } catch (error) {
+    throw new Error('Error deleting avatar');
+  }
+
   const { error } = await supabase.from('Members').delete().eq('id', id);
+
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteAvatar(fileName: string) {
+  const { error } = await supabase.storage.from('Avatars').remove([fileName.split('/')[1]]);
 
   if (error) {
     console.log(error);

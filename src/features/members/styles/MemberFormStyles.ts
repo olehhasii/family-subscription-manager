@@ -26,4 +26,5 @@ export const ActionsContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: var(--spacing-16);
+  position: relative;
 `;
