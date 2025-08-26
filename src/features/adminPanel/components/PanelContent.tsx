@@ -4,13 +4,14 @@ import { PanelContent as StyledPanelContent } from '../styles/PanelContent.style
 
 interface PanelContentProps {
   activeContent: 'add' | 'edit' | 'none';
+  onCancelMemberAction: () => void;
 }
 
-export default function PanelContent({ activeContent }: PanelContentProps) {
+export default function PanelContent({ activeContent, onCancelMemberAction }: PanelContentProps) {
   return (
     <StyledPanelContent>
-      {activeContent === 'add' && <CreateMemberForm />}
-      {activeContent === 'edit' && <EditMemberForm />}
+      {activeContent === 'add' && <CreateMemberForm onCancelMemberAction={onCancelMemberAction} />}
+      {activeContent === 'edit' && <EditMemberForm onCancelMemberAction={onCancelMemberAction} />}
       {activeContent === 'none' && <span>Select member to edit or create new one</span>}
     </StyledPanelContent>
   );

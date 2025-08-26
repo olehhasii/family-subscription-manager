@@ -20,6 +20,10 @@ export default function AdminPanel() {
     setActiveMembersContent(content);
   };
 
+  const handleCancleMemberAction = () => {
+    setActiveMembersContent('none');
+  };
+
   return (
     <StyledAdminPanel>
       <PanelSide onSetActiveTab={handleChangeActiveTab} activeTab={activeTab}>
@@ -27,7 +31,9 @@ export default function AdminPanel() {
         {activeTab === 'members' && <MembersSide onChangeContent={handleChangeMembersContent} />}
       </PanelSide>
 
-      {activeTab === 'members' && <PanelContent activeContent={activeMembersContent} />}
+      {activeTab === 'members' && (
+        <PanelContent activeContent={activeMembersContent} onCancelMemberAction={handleCancleMemberAction} />
+      )}
     </StyledAdminPanel>
   );
 }

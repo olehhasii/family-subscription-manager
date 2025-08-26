@@ -2,16 +2,20 @@ import AdminPanelButton from '../../../ui/AdminPanelButton';
 import Checkbox from '../../../ui/form/Checkbox';
 import FormInput from '../../../ui/form/FormInput';
 import ImgInput from '../../../ui/form/ImgInput';
+import Spinner from '../../../ui/Spinner';
 import { ActionsContainer, InputsContainer, StyledForm } from '../styles/MemberFormStyles';
 
 interface FormProps {
   formLabel: string;
   submitLabel: string;
+  onSubmit: (event: React.SyntheticEvent) => void;
+  onCancel: () => void;
+  isLoading: boolean;
 }
 
-export default function MemberFormBase({ formLabel, submitLabel }: FormProps) {
+export default function MemberFormBase({ formLabel, submitLabel, onSubmit, onCancel, isLoading }: FormProps) {
   return (
-    <StyledForm>
+    <StyledForm onSubmit={onSubmit}>
       <h2>{formLabel}</h2>
       <InputsContainer>
         <ImgInput />
@@ -25,8 +29,13 @@ export default function MemberFormBase({ formLabel, submitLabel }: FormProps) {
         />
       </InputsContainer>
       <ActionsContainer>
-        <AdminPanelButton label={submitLabel} />
-        <AdminPanelButton label="Cancel" variant="danger" />
+        {isLoading && <Spinner />}
+        {!isLoading && (
+          <>
+            <AdminPanelButton label={submitLabel} type="submit" />
+            <AdminPanelButton label="Cancel" variant="danger" onClick={onCancel} />
+          </>
+        )}
       </ActionsContainer>
     </StyledForm>
   );

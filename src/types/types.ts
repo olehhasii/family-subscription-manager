@@ -9,3 +9,12 @@ export type MotionIconComponentProps = IconComponentProps &
   MotionProps & {
     variants?: Variants;
   };
+
+export type Member = {
+  id: bigint;
+  name: string;
+  email: string;
+  paidUntill: string;
+  shouldPay: boolean;
+  avatarUrl: string;
+};

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import defaultAvatar from '../../assets/avatarPlaceholder.svg';
+import { useState } from 'react';
 
 const StyledImgInput = styled.div`
   color: var(--color-text-secondary);
@@ -35,13 +36,22 @@ const HiddenImgInput = styled.input`
 `;
 
 export default function ImgInput() {
+  const [file, setFile] = useState<File>();
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const selectedFile = e.target.files[0];
+      setFile(selectedFile);
+    }
+  };
+
   return (
     <StyledImgInput>
       <label htmlFor="avatar">
-        <StyledAvatar src={defaultAvatar} />
+        <StyledAvatar src={file ? URL.createObjectURL(file) : defaultAvatar} />
         <span>Upload Avatar</span>
       </label>
-      <HiddenImgInput type="file" id="avatar" name="avatar" />
+      <HiddenImgInput type="file" id="avatar" name="avatar" onChange={handleFileChange} />
     </StyledImgInput>
   );
 }

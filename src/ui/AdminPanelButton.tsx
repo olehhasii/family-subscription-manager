@@ -16,7 +16,7 @@ interface AdminPanelButtonProps {
   label: string;
   variant?: Variant;
   type?: 'button' | 'submit' | 'reset' | undefined;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const StyledAdminPanelButton = styled.button<{ $variant: Variant }>`
