@@ -7,6 +7,7 @@ interface InputProps {
   id: string;
   name: string;
   placeholder?: string;
+  defaultValue?: string;
 }
 
 const FormInputContainer = styled.div`
@@ -29,11 +30,11 @@ const FormInputContainer = styled.div`
   }
 `;
 
-export default function FormInput({ label, type = 'text', name, id, placeholder = '' }: InputProps) {
+export default function FormInput({ label, type = 'text', name, id, placeholder = '', defaultValue = '' }: InputProps) {
   return (
     <FormInputContainer>
       <label htmlFor={id}>{label}</label>
-      <input type={type} id={id} name={name} placeholder={placeholder} />
+      <input type={type} id={id} name={name} placeholder={placeholder} defaultValue={defaultValue} />
     </FormInputContainer>
   );
 }

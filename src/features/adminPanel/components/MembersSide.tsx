@@ -1,19 +1,22 @@
-import { getAllMembers } from '../../../api/membersApi';
 import AdminPanelButton from '../../../ui/AdminPanelButton';
 import { PanelMembersList } from '../styles/AdminPanel.styles';
 import Member from './Member';
-import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../../ui/Spinner';
+import useMembers from '../../../hooks/useMembers';
 
 interface MembersSideProps {
-  onChangeContent: (content: 'add' | 'edit' | 'none') => void;
+  onChangeContent: (content: 'add' | 'edit' | 'none', id?: string) => void;
 }
 
 export default function MembersSide({ onChangeContent }: MembersSideProps) {
-  const { data: members, isLoading } = useQuery({
-    queryKey: ['members'],
-    queryFn: getAllMembers,
-  });
+  const { members, isLoading, isError } = useMembers();
+
+  if (isError)
+    return (
+      <div>
+        <p>Error Fetching Members</p>
+      </div>
+    );
 
   if (isLoading) {
     return (
@@ -27,7 +30,7 @@ export default function MembersSide({ onChangeContent }: MembersSideProps) {
       <AdminPanelButton label="+ Add Member" onClick={() => onChangeContent('add')} />
       <PanelMembersList>
         {members?.map((member) => (
-          <Member onClick={() => onChangeContent('edit')} memberData={member} key={member.id} />
+          <Member onClick={() => onChangeContent('edit', member.id)} memberData={member} key={member.id} />
         ))}
       </PanelMembersList>
     </>

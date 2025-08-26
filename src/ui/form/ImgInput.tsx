@@ -35,7 +35,7 @@ const HiddenImgInput = styled.input`
   top: 0;
 `;
 
-export default function ImgInput() {
+export default function ImgInput({ defaultImg }: { defaultImg?: string }) {
   const [file, setFile] = useState<File>();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,10 +45,25 @@ export default function ImgInput() {
     }
   };
 
+  let avatarSrc;
+
+  if (defaultImg && !file) {
+    avatarSrc = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/${defaultImg}`;
+  }
+
+  if (!defaultImg && !file) {
+    avatarSrc = defaultAvatar;
+  }
+
+  if (file) {
+    avatarSrc = URL.createObjectURL(file);
+  }
+
   return (
     <StyledImgInput>
       <label htmlFor="avatar">
-        <StyledAvatar src={file ? URL.createObjectURL(file) : defaultAvatar} />
+        <StyledAvatar src={avatarSrc} />
+
         <span>Upload Avatar</span>
       </label>
       <HiddenImgInput type="file" id="avatar" name="avatar" onChange={handleFileChange} />

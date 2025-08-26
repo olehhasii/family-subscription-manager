@@ -11,13 +11,17 @@ import MembersSide from './components/MembersSide';
 export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState<'members' | 'board'>('members');
   const [activeMembersContent, setActiveMembersContent] = useState<'add' | 'edit' | 'none'>('none');
+  const [activeMemberId, setActiveMember] = useState('');
 
   const handleChangeActiveTab = (tab: 'members' | 'board') => {
     setActiveTab(tab);
   };
 
-  const handleChangeMembersContent = (content: 'add' | 'edit' | 'none') => {
+  const handleChangeMembersContent = (content: 'add' | 'edit' | 'none', id?: string) => {
     setActiveMembersContent(content);
+
+    if (id) setActiveMember(id);
+    if (!id) setActiveMember('');
   };
 
   const handleCancleMemberAction = () => {
@@ -32,7 +36,11 @@ export default function AdminPanel() {
       </PanelSide>
 
       {activeTab === 'members' && (
-        <PanelContent activeContent={activeMembersContent} onCancelMemberAction={handleCancleMemberAction} />
+        <PanelContent
+          activeContent={activeMembersContent}
+          onCancelMemberAction={handleCancleMemberAction}
+          activeMemberId={activeMemberId}
+        />
       )}
     </StyledAdminPanel>
   );

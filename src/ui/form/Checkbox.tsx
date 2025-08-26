@@ -4,6 +4,7 @@ interface CheckboxProps {
   label: string;
   id: string;
   name: string;
+  defaultChecked?: boolean;
 }
 
 const CheckboxContainer = styled.div`
@@ -27,11 +28,18 @@ const CheckboxContainer = styled.div`
   }
 `;
 
-export default function Checkbox({ id, name, label }: CheckboxProps) {
+export default function Checkbox({ id, name, label, defaultChecked }: CheckboxProps) {
+  console.log(defaultChecked === undefined ? true : defaultChecked);
+
   return (
     <CheckboxContainer>
       <label htmlFor={id}>{label}</label>
-      <input type="checkbox" id={id} name={name} defaultChecked={true} />
+      <input
+        type="checkbox"
+        id={id}
+        name={name}
+        defaultChecked={defaultChecked === undefined ? true : defaultChecked}
+      />
     </CheckboxContainer>
   );
 }

@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import MemberFormBase from './MemberFormBase';
 import { createMember } from '../../../api/membersApi';
 import { toast } from 'sonner';
@@ -11,11 +11,14 @@ interface MutateProps {
 }
 
 export default function CreateMemberForm({ onCancelMemberAction }: { onCancelMemberAction: () => void }) {
+  const queryClient = useQueryClient();
+
   const { mutate, isPending } = useMutation({
     mutationFn: ({ newMember, avatarFile }: MutateProps) => createMember(newMember, avatarFile),
     onSuccess: () => {
       toast.success('Member Created');
-      //Invalidate cache
+      queryClient.invalidateQueries({ queryKey: ['members'] });
+      onCancelMemberAction();
     },
     onError: (err) => {
       toast.error(err.message);
