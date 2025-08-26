@@ -1,8 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import MemberFormBase from './MemberFormBase';
-import { createMember, uploadAvatar } from '../../../api/membersApi';
+import { createMember } from '../../../api/membersApi';
 import { toast } from 'sonner';
 import type { Member } from '../../../types/types';
+import { getClosestNextMonth } from '../../../lib/dates';
 
 interface MutateProps {
   newMember: Omit<Member, 'id'>;
@@ -31,7 +32,7 @@ export default function CreateMemberForm({ onCancelMemberAction }: { onCancelMem
     const newMember = {
       name: formData.get('memberName') as string,
       email: formData.get('memberEmail') as string,
-      paidUntill: new Date().toUTCString(),
+      paidUntill: getClosestNextMonth(),
       avatarUrl: '',
       shouldPay: formData.get('shouldPay') ? true : false,
     };

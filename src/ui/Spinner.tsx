@@ -18,6 +18,10 @@ const StyledSpinner = styled.div`
   display: inline-block;
   box-sizing: border-box;
   animation: ${spin} 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export default function Spinner() {

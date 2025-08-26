@@ -33,3 +33,14 @@ export async function uploadAvatar(memberEmail: string, file: File) {
 
   return data.fullPath;
 }
+
+export async function getAllMembers() {
+  const { data, error } = await supabase.from('Members').select('*');
+
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}

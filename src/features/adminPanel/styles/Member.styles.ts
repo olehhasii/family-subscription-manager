@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import type { StatusKeys } from '../../../types/types';
 
 export const MemberItem = styled.li`
   display: flex;
@@ -7,6 +8,7 @@ export const MemberItem = styled.li`
   padding: var(--spacing-8);
   border-radius: var(--spacing-16);
   border: var(--border);
+  min-width: 310px;
   cursor: pointer;
 
   & img {
@@ -35,10 +37,16 @@ export const MemberDate = styled.span`
   font-size: var(--text-md);
 `;
 
-export const MemberBadge = styled.span<{ $color: string }>`
+const badgeVariants = {
+  success: { color: 'var(--color-green)' },
+  danger: { color: 'var(--color-red)' },
+  due: { color: 'var(--color-yellow)' },
+};
+
+export const MemberBadge = styled.span<{ $variant: StatusKeys }>`
   margin-left: var(--spacing-36);
   padding: var(--spacing-8);
   border-radius: var(--spacing-24);
-  background-color: ${(props) => props.$color};
+  background-color: ${({ $variant }) => badgeVariants[$variant].color};
   font-size: var(--text-s);
 `;

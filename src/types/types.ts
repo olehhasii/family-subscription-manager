@@ -18,3 +18,5 @@ export type Member = {
   shouldPay: boolean;
   avatarUrl: string;
 };
+
+export type StatusKeys = 'success' | 'danger' | 'due';

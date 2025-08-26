@@ -12,6 +12,8 @@ export const StyledAdminPanel = styled.div`
 export const PanelMembersList = styled.ul`
   list-style: none;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: var(--spacing-12);
   margin-top: var(--spacing-16);
