@@ -55,3 +55,12 @@ export async function getMemberById(id: string) {
 
   return data;
 }
+
+export async function deleteMemberById(id: string) {
+  const { error } = await supabase.from('Members').delete().eq('id', id);
+
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}

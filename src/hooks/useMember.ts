@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { getMemberById } from '../api/membersApi';
-import type { Member } from '../types/types';
 
 export function useMember(memberId: string) {
   const { data, isLoading, isError } = useQuery({

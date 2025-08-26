@@ -13,7 +13,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <Toaster />
+      <Toaster richColors />
       <Wrapper>
         {/* <Board />
         <Island /> */}

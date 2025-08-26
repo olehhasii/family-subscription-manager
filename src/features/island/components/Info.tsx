@@ -3,7 +3,7 @@ import infoBgImg from '../../../assets/info-bg.png';
 import { motion } from 'motion/react';
 import CloseButton from '../../../ui/CloseButton';
 import { InfoImgWrapper, InfoWrapper } from '../styles/Info.styles';
-import { Overlay } from '../styles/Island.styles';
+import { Overlay } from '../../../styles/GeneralComponents.Styles';
 
 interface InfoProps {
   onCloseInfo: () => void;

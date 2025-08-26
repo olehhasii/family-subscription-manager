@@ -52,7 +52,7 @@ export default function CreateMemberForm({ onCancelMemberAction }: { onCancelMem
       formLabel="Create Member"
       submitLabel="Add Member"
       onSubmit={handleCreateMember}
-      onCancel={onCancelMemberAction}
+      onSecondaryAction={onCancelMemberAction}
       isLoading={isPending}
     />
   );

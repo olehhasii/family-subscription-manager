@@ -11,7 +11,7 @@ interface FormProps {
   submitLabel: string;
   secondaryActionLabel?: string;
   onSubmit: (event: React.SyntheticEvent) => void;
-  onCancel: () => void;
+  onSecondaryAction: () => void;
   isLoading?: boolean;
   children?: React.ReactNode;
   defaultValues?: Member;
@@ -21,14 +21,12 @@ export default function MemberFormBase({
   formLabel,
   submitLabel,
   onSubmit,
-  onCancel,
+  onSecondaryAction,
   isLoading,
   secondaryActionLabel = 'Cancel',
   children,
   defaultValues,
 }: FormProps) {
-  console.log(defaultValues);
-
   return (
     <StyledForm onSubmit={onSubmit}>
       <h2>{formLabel}</h2>
@@ -51,7 +49,7 @@ export default function MemberFormBase({
         {!isLoading && (
           <>
             <AdminPanelButton label={submitLabel} type="submit" />
-            <AdminPanelButton label={secondaryActionLabel} variant="danger" onClick={onCancel} />
+            <AdminPanelButton label={secondaryActionLabel} variant="danger" onClick={onSecondaryAction} />
           </>
         )}
       </ActionsContainer>

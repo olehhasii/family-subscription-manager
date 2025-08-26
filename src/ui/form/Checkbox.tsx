@@ -29,8 +29,6 @@ const CheckboxContainer = styled.div`
 `;
 
 export default function Checkbox({ id, name, label, defaultChecked }: CheckboxProps) {
-  console.log(defaultChecked === undefined ? true : defaultChecked);
-
   return (
     <CheckboxContainer>
       <label htmlFor={id}>{label}</label>
