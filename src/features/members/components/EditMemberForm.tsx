@@ -5,9 +5,16 @@ import MemberFormBase from './MemberFormBase';
 import AdminPanelButton from '../../../ui/AdminPanelButton';
 import { DeleteModalContainer, ModalActions, ModalHeading } from '../../../ui/modal/Modal.styles';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteMemberById } from '../../../api/membersApi';
+import { deleteMemberById, updateMemberData } from '../../../api/membersApi';
 import { toast } from 'sonner';
 import Spinner from '../../../ui/Spinner';
+import type { Member } from '../../../types/types';
+
+interface MutateUpdateProps {
+  newData: Omit<Member, 'id'>;
+  id: string;
+  newAvatar: File;
+}
 
 export default function EditMemberForm({
   onCancelMemberAction,
@@ -22,7 +29,7 @@ export default function EditMemberForm({
 
   const queryClient = useQueryClient();
 
-  const { mutate, isPending } = useMutation({
+  const { mutate: mutateDeleteMember, isPending: isDeletionPending } = useMutation({
     mutationFn: deleteMemberById,
 
     onSuccess: () => {
@@ -39,9 +46,43 @@ export default function EditMemberForm({
     },
   });
 
+  const { mutate: mutateUpdateMember, isPending: isUpdatingPending } = useMutation({
+    mutationFn: ({ newData, id, newAvatar }: MutateUpdateProps) => updateMemberData(newData, id, newAvatar),
+    onSuccess: () => {
+      toast.success('Member updated');
+      queryClient.invalidateQueries({ queryKey: ['members'] });
+      queryClient.removeQueries({ queryKey: [`${activeMemberId}-member`] });
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
   const handleDeleteMember = () => {
-    mutate(activeMemberId);
+    mutateDeleteMember(activeMemberId);
   };
+
+  const handleUpdateMember = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+
+    const newAvatar = formData.get('avatar');
+
+    const newData = {
+      name: formData.get('memberName') as string,
+      email: formData.get('memberEmail') as string,
+      paidUntill: '2025-09-21',
+      avatarUrl: member.avatarUrl,
+      shouldPay: formData.get('shouldPay') ? true : false,
+    };
+
+    mutateUpdateMember({ newData, id: activeMemberId, newAvatar: newAvatar as File });
+  };
+
+  if (isUpdatingPending) {
+    return <Spinner isAbsolute={false} />;
+  }
 
   return (
     <>
@@ -49,7 +90,7 @@ export default function EditMemberForm({
         formLabel="Update Member"
         submitLabel="Save Changes"
         onSecondaryAction={() => setIsDeleteModalOpened(true)}
-        onSubmit={() => {}}
+        onSubmit={handleUpdateMember}
         secondaryActionLabel="Delete"
         defaultValues={member}
       />
@@ -57,8 +98,8 @@ export default function EditMemberForm({
         <DeleteModalContainer>
           <ModalHeading>Are you sure that you want to delete {member?.name}</ModalHeading>
           <ModalActions>
-            {isPending && <Spinner />}
-            {!isPending && (
+            {(isDeletionPending || isUpdatingPending) && <Spinner isAbsolute={false} />}
+            {!isDeletionPending && !isUpdatingPending && (
               <>
                 <AdminPanelButton label="Cancel" onClick={() => setIsDeleteModalOpened(false)} />
                 <AdminPanelButton label="Yes, Delete" variant="danger" onClick={handleDeleteMember} />

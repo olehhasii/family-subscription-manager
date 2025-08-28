@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const PanelSide = styled.div`
   padding: var(--spacing-24);
-  border-right: var(--border);
   position: relative;
 `;
 

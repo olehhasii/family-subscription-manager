@@ -17,6 +17,6 @@ export const ModalHeading = styled.h3`
 export const ModalActions = styled.div`
   margin-top: var(--spacing-20);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--spacing-16);
 `;

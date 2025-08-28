@@ -9,7 +9,7 @@ const spin = keyframes`
     }
 `;
 
-const StyledSpinner = styled.div`
+const StyledSpinner = styled.div<{ $absolute: boolean }>`
   width: 48px;
   height: 48px;
   border: 5px solid #fff;
@@ -18,12 +18,12 @@ const StyledSpinner = styled.div`
   display: inline-block;
   box-sizing: border-box;
   animation: ${spin} 1s linear infinite;
-  position: absolute;
+  position: ${(props) => (props.$absolute ? 'absolute' : 'static')};
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
-export default function Spinner() {
-  return <StyledSpinner></StyledSpinner>;
+export default function Spinner({ isAbsolute = true }: { isAbsolute?: boolean }) {
+  return <StyledSpinner $absolute={isAbsolute}></StyledSpinner>;
 }

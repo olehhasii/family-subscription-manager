@@ -4,6 +4,7 @@ import { createMember } from '../../../api/membersApi';
 import { toast } from 'sonner';
 import type { Member } from '../../../types/types';
 import { getClosestNextMonth } from '../../../lib/dates';
+import Spinner from '../../../ui/Spinner';
 
 interface MutateProps {
   newMember: Omit<Member, 'id'>;
@@ -25,7 +26,7 @@ export default function CreateMemberForm({ onCancelMemberAction }: { onCancelMem
     },
   });
 
-  const handleCreateMember = async (event: React.FormEvent) => {
+  const handleCreateMember = (event: React.FormEvent) => {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
@@ -46,6 +47,10 @@ export default function CreateMemberForm({ onCancelMemberAction }: { onCancelMem
       mutate({ newMember, avatarFile: avatarFile as File });
     }
   };
+
+  if (isPending) {
+    return <Spinner isAbsolute={false} />;
+  }
 
   return (
     <MemberFormBase

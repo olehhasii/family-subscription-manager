@@ -80,3 +80,42 @@ export async function deleteAvatar(fileName: string) {
     throw new Error(error.message);
   }
 }
+
+export async function updateMemberData(newData: Omit<Member, 'id'>, id: string, newAvatar: File) {
+  try {
+    if (newAvatar.size !== 0 && newAvatar.name !== '') {
+      const newAvatarUrl = await updateAvatar(id, newAvatar);
+
+      await supabase
+        .from('Members')
+        .update({ ...newData, avatarUrl: newAvatarUrl })
+        .eq('id', id)
+        .select();
+    } else {
+      await supabase
+        .from('Members')
+        .update({ ...newData })
+        .eq('id', id)
+        .select();
+    }
+  } catch (error) {
+    throw new Error('Error updating member');
+  }
+}
+
+export async function updateAvatar(id: string, newFile: File) {
+  const { data, error } = await supabase.from('Members').select('avatarUrl').eq('id', id).single();
+
+  if (error) {
+    console.error('Failed to fetch avatar URL:', error);
+    throw new Error(error.message);
+  }
+
+  const fileName = data?.avatarUrl;
+
+  await deleteAvatar(fileName);
+
+  const newPath = await uploadAvatar(newFile);
+
+  return newPath;
+}

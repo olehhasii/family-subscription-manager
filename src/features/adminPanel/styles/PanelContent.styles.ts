@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const PanelContent = styled.div`
   min-width: 400px;
   padding: var(--spacing-24);
+  border-left: var(--border);
 
-  /* display: flex;
+  display: flex;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
 
   & > span {
     font-size: var(--text-xl);
