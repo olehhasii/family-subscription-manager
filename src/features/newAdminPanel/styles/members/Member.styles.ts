@@ -6,11 +6,18 @@ export const MemberContainer = styled.div<{ $shouldPay?: boolean }>`
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-36);
-  background-color: var(--color-bg-secondary);
-  padding: var(--spacing-4) var(--spacing-8);
+  background-color: ${(props) => (props.$shouldPay ? 'var(--color-bg-main)' : 'var(--color-bg-main)')};
+  color: ${(props) => (props.$shouldPay ? 'inherit' : 'var(--color-text-primary)')};
+  padding: var(--spacing-8) var(--spacing-12);
   border-radius: var(--spacing-16);
-  border: ${(props) => (props.$shouldPay ? 'var(--border)' : '1px solid green')};
+  border: ${(props) => (props.$shouldPay ? 'var(--border)' : 'var(--border)')};
   cursor: pointer;
+
+  transition: 0.2s background-color ease-in;
+
+  &:hover {
+    background-color: var(--color-bg-accent);
+  }
 `;
 
 export const MemberHeader = styled.div`
@@ -20,8 +27,8 @@ export const MemberHeader = styled.div`
 `;
 
 export const MemberAvatar = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 `;
 
@@ -43,7 +50,9 @@ const memberStatusVariants = {
     color: var(--color-red);
   `,
   special: css`
-    color: var(--color-green);
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--spacing-16);
   `,
 };
 
@@ -53,8 +62,13 @@ export const MemberPaidDate = styled.span`
 `;
 
 export const MemberStatus = styled.span<{ $variant: MemberStatusesType }>`
-  font-size: var(--text-base);
-
+  font-size: var(--text-s);
+  border: var(--border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-4) var(--spacing-6);
   ${(props) => memberStatusVariants[props.$variant]}
 `;
 

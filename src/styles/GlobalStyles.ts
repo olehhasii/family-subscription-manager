@@ -23,7 +23,7 @@ const GlobalStyle = styled.createGlobalStyle`
     }
   }
   body {
-    background-color: var(--color-bg-secondary);
+    background-color: var(--color-bg-page);
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
@@ -74,24 +74,28 @@ const GlobalStyle = styled.createGlobalStyle`
     --color-dark: #100c08;
     --color-gray: #757575;
 
-    /*  --color-bg-main: #100c08;
-    --color-bg-secondary: #1f1c19; // #1B1816 */
-
-    --color-bg-main: #181816;
+    /* --color-bg-main: #181816;
     --color-bg-secondary: #282724;
+    --color-bg-accent: #282724; */
 
-    /* --color-bg-main: #0c0803;
-    --color-bg-secondary: #1d1a18; */
+    --color-red: #b02525;
+    --color-green: #15803d;
+    --color-yellow: #ffb84d;
 
-    --color-red: #660708;
-    --color-green: #10b981;
-    --color-yellow: #d3d331ff;
-
-    --color-text-primary: #ffffff;
+    /* --color-text-primary: #ffffff;
     --color-text-secondary: #b7b7b7ff;
-    --color-text-dark: #000000;
+    --color-text-dark: #000000; */
 
-    --border: 1px solid rgba(255, 255, 255, 0.1);
+    --border: 1px solid oklch(100% 0 0 / 0.1);
+
+    --color-bg-page: #0a0a0a;
+    --color-bg-main: #171717;
+    --color-bg-accent: #404040;
+    --color-bg-secondary: #262626;
+
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #a1a1a1;
+    --color-text-dark: #000000;
 
     --text-xs: 0.625rem; /* 10px */
     --text-s: 0.75rem; /* 12px */
@@ -120,20 +124,6 @@ const GlobalStyle = styled.createGlobalStyle`
     --spacing-56: 3.5rem; /* 56px */
     --spacing-64: 4rem; /* 64px */
   }
-
-  /* Elegant Emerald Theme for Special Members */
-  --color-emerald-primary: #10b981; // Modern emerald
-  --color-emerald-secondary: #34d399; // Light emerald
-  --color-emerald-dark: #047857; // Dark emerald
-  --color-emerald-light: #d1fae5; // Very light emerald
-  --color-emerald-accent: #059669; // Accent emerald
-
-  /* Premium Backgrounds */
-  --color-premium-bg: #0f1a0f; // Dark emerald background
-  --color-premium-bg-secondary: #1a2d1a; // Lighter emerald background
-  --color-premium-border: #10b981; // Emerald border
-  --color-premium-text: #34d399; // Emerald text
-  --color-premium-shadow: rgba(16, 185, 129, 0.2); // Emerald shadow
 
   :root[data-theme='dark'] {
     --bg: #121212;

@@ -5,9 +5,11 @@ const buttonVariants = {
     background-color: var(--color-bg-secondary);
     color: var(--color-text-primary);
     border: var(--border);
+    transition: 0.2s all ease-in;
 
     &:hover {
       transform: translateY(-1px);
+      background-color: var(--color-bg-accent);
     }
   `,
 

@@ -15,6 +15,11 @@ export const AdminPanelContainer = styled.div`
   border-radius: var(--spacing-16);
   color: var(--color-text-primary);
   background-color: var(--color-bg-main);
+  border: var(--border);
+
+  @media (max-width: 768px) {
+    max-width: 340px;
+  }
 `;
 
 export const AdminPanelContent = styled.div``;

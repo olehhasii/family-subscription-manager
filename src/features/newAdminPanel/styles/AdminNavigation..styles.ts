@@ -13,7 +13,7 @@ export const AdminNavGroup = styled.li``;
 
 export const AdminNavButton = styled.button<{ $active?: boolean }>`
   padding: var(--spacing-4) var(--spacing-8);
-  background-color: ${(props) => (props.$active ? 'var(--color-bg-secondary)' : 'transparent')};
+  background-color: ${(props) => (props.$active ? 'var(--color-bg-accent)' : 'transparent')};
   color: ${(props) => (props.$active ? 'var(--color-text-primary)' : 'var(--color-text-secondary)')};
   border: none;
   border-radius: var(--spacing-12);

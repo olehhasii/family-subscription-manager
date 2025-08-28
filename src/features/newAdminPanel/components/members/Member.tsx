@@ -35,7 +35,7 @@ export default function Member({ memberData, onEditMember }: MemberProps) {
         </MemberDetails>
       </MemberHeader>
       <MemberStatus $variant={shouldPay ? memberStatus.variant : 'special'}>
-        {shouldPay ? memberStatus.label : '💲Special Terms'}
+        {shouldPay ? memberStatus.label : '💲No need for payments'}
       </MemberStatus>
     </MemberContainer>
   );
