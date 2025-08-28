@@ -86,17 +86,24 @@ export async function updateMemberData(newData: Omit<Member, 'id'>, id: string, 
     if (newAvatar.size !== 0 && newAvatar.name !== '') {
       const newAvatarUrl = await updateAvatar(id, newAvatar);
 
-      await supabase
+      const { error } = await supabase
         .from('Members')
         .update({ ...newData, avatarUrl: newAvatarUrl })
         .eq('id', id)
         .select();
+
+      if (error) {
+        throw new Error(error.message);
+      }
     } else {
-      await supabase
+      const { error } = await supabase
         .from('Members')
         .update({ ...newData })
         .eq('id', id)
         .select();
+      if (error) {
+        throw new Error(error.message);
+      }
     }
   } catch (error) {
     throw new Error('Error updating member');

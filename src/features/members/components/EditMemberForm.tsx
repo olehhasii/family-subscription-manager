@@ -9,6 +9,7 @@ import { deleteMemberById, updateMemberData } from '../../../api/membersApi';
 import { toast } from 'sonner';
 import Spinner from '../../../ui/Spinner';
 import type { Member } from '../../../types/types';
+import DateInput from '../../../ui/form/DateInput';
 
 interface MutateUpdateProps {
   newData: Omit<Member, 'id'>;
@@ -72,12 +73,18 @@ export default function EditMemberForm({
     const newData = {
       name: formData.get('memberName') as string,
       email: formData.get('memberEmail') as string,
-      paidUntill: '2025-09-21',
+      paidUntill: formData.get('paidUntill') + '-01',
       avatarUrl: member.avatarUrl,
       shouldPay: formData.get('shouldPay') ? true : false,
     };
 
-    mutateUpdateMember({ newData, id: activeMemberId, newAvatar: newAvatar as File });
+    console.log(newData);
+
+    if (!newData.name || !newData.email) {
+      toast.error('Some fields are empty');
+    } else {
+      mutateUpdateMember({ newData, id: activeMemberId, newAvatar: newAvatar as File });
+    }
   };
 
   if (isUpdatingPending) {
@@ -93,7 +100,14 @@ export default function EditMemberForm({
         onSubmit={handleUpdateMember}
         secondaryActionLabel="Delete"
         defaultValues={member}
-      />
+      >
+        <DateInput
+          label="What is the payment due date? "
+          name="paidUntill"
+          id="paidUntill"
+          defaultValue={member?.paidUntill}
+        />
+      </MemberFormBase>
       <Modal isOpen={isDeleteModalOpened}>
         <DeleteModalContainer>
           <ModalHeading>Are you sure that you want to delete {member?.name}</ModalHeading>
