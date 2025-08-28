@@ -84,7 +84,7 @@ const GlobalStyle = styled.createGlobalStyle`
     --color-bg-secondary: #1d1a18; */
 
     --color-red: #660708;
-    --color-green: #1b4332;
+    --color-green: #10b981;
     --color-yellow: #d3d331ff;
 
     --color-text-primary: #ffffff;
@@ -120,6 +120,20 @@ const GlobalStyle = styled.createGlobalStyle`
     --spacing-56: 3.5rem; /* 56px */
     --spacing-64: 4rem; /* 64px */
   }
+
+  /* Elegant Emerald Theme for Special Members */
+  --color-emerald-primary: #10b981; // Modern emerald
+  --color-emerald-secondary: #34d399; // Light emerald
+  --color-emerald-dark: #047857; // Dark emerald
+  --color-emerald-light: #d1fae5; // Very light emerald
+  --color-emerald-accent: #059669; // Accent emerald
+
+  /* Premium Backgrounds */
+  --color-premium-bg: #0f1a0f; // Dark emerald background
+  --color-premium-bg-secondary: #1a2d1a; // Lighter emerald background
+  --color-premium-border: #10b981; // Emerald border
+  --color-premium-text: #34d399; // Emerald text
+  --color-premium-shadow: rgba(16, 185, 129, 0.2); // Emerald shadow
 
   :root[data-theme='dark'] {
     --bg: #121212;

@@ -12,8 +12,10 @@ export const getClosestNextMonth = () => {
   return new Date(firstDateOfNextMonth).toISOString().slice(0, 10);
 };
 
-export const getFormattedDate = (date: Date) => {
-  return dateFormatter.format(date);
+export const getFormattedDate = (date: string) => {
+  const dateObj = new Date(date);
+
+  return dateFormatter.format(dateObj);
 };
 
 export const checkDateStatus = (paidUntillDate: Date) => {

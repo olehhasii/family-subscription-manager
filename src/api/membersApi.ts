@@ -1,4 +1,4 @@
-import supabase from '../supabase';
+/* import supabase from '../supabase';
 import type { Member } from '../types/types';
 
 export async function createMember(newMember: Omit<Member, 'id'>, file: File) {
@@ -125,4 +125,16 @@ export async function updateAvatar(id: string, newFile: File) {
   const newPath = await uploadAvatar(newFile);
 
   return newPath;
+} */
+
+import supabase from '../supabase';
+
+export async function getAllMembers() {
+  const { data: members, error } = await supabase.from('Members').select('*');
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return members;
 }

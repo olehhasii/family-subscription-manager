@@ -1,8 +1,7 @@
+import useAdminPanelNav from '../../hooks/useAdminPanelNav';
 import AdminNavigation from './components/AdminNavigation';
 import AdminViewRenderer from './components/AdminViewRenderer';
-
 import { AdminPanelContainer, AdminPanelContent } from './styles/AdminPanel.styles';
-import useAdminPanelNav from '../../hooks/useAdminPanelNav';
 
 export default function AdminPanel() {
   const { activeView, navigateTo, selectedMemberId } = useAdminPanelNav();
@@ -12,7 +11,7 @@ export default function AdminPanel() {
       <AdminNavigation activeView={activeView} onNavigate={navigateTo} />
 
       <AdminPanelContent>
-        <AdminViewRenderer view={activeView} />
+        <AdminViewRenderer view={activeView} onNavigate={navigateTo} />
       </AdminPanelContent>
     </AdminPanelContainer>
   );
