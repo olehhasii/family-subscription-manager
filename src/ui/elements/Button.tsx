@@ -2,14 +2,15 @@ import styled, { css } from 'styled-components';
 
 const buttonVariants = {
   primary: css`
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-dark);
     border: var(--border);
+    font-weight: 600;
     transition: 0.2s all ease-in;
 
     &:hover {
       transform: translateY(-1px);
-      background-color: var(--color-bg-accent);
+      opacity: 0.8;
     }
   `,
 
@@ -30,6 +31,18 @@ const buttonVariants = {
 
     &:hover {
       transform: translateY(-1px);
+    }
+  `,
+
+  default: css`
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: var(--border);
+    transition: 0.2s all ease-in;
+
+    &:hover {
+      transform: translateY(-1px);
+      background-color: var(--color-bg-accent);
     }
   `,
 };
@@ -70,7 +83,7 @@ const StyledButton = styled.button<{
   ${(props) =>
     props.$disabled &&
     css`
-      opacity: 0.5;
+      opacity: 0.3;
       cursor: not-allowed;
     `}
 `;
@@ -88,7 +101,7 @@ interface ButtonProps {
 
 export default function Button({
   children,
-  variant = 'primary',
+  variant = 'default',
   size = 'medium',
   fullWidth = false,
   disabled = false,

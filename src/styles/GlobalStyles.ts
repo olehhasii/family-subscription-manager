@@ -92,6 +92,7 @@ const GlobalStyle = styled.createGlobalStyle`
     --color-bg-main: #171717;
     --color-bg-accent: #404040;
     --color-bg-secondary: #262626;
+    --color-bg-primary: #e5e5e5;
 
     --color-text-primary: #fafafa;
     --color-text-secondary: #a1a1a1;

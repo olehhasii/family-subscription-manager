@@ -16,6 +16,7 @@ export const AdminPanelContainer = styled.div`
   color: var(--color-text-primary);
   background-color: var(--color-bg-main);
   border: var(--border);
+  min-height: 600px;
 
   @media (max-width: 768px) {
     max-width: 340px;

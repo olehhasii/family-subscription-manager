@@ -14,19 +14,19 @@ export default function AdminNavigation({ onNavigate, activeView }: AdminNavigat
           $active={activeView === ADMIN_VIEWS.MEMBERS_LIST}
           onClick={() => onNavigate(ADMIN_VIEWS.MEMBERS_LIST)}
         >
-          Members
+          🧔‍♂️Members
         </AdminNavButton>
       </AdminNavGroup>
       <AdminNavGroup>
         <AdminNavButton
-          $active={activeView === ADMIN_VIEWS.BOARD_SETTINGS}
-          onClick={() => onNavigate(ADMIN_VIEWS.BOARD_SETTINGS)}
+          $active={activeView === ADMIN_VIEWS.GROUP_SETTINGS}
+          onClick={() => onNavigate(ADMIN_VIEWS.GROUP_SETTINGS)}
         >
-          Board Settings
+          ⚙️Board Settings
         </AdminNavButton>
       </AdminNavGroup>
       <AdminNavGroup>
-        <AdminNavButton>Logout</AdminNavButton> {/* TODO: logut admin to main page */}
+        <AdminNavButton>🏃Logout</AdminNavButton> {/* TODO: logut admin to main page */}
       </AdminNavGroup>
     </AdminNavigationContainer>
   );

@@ -9,9 +9,9 @@ const spin = keyframes`
     }
 `;
 
-const StyledSpinner = styled.div`
-  width: 48px;
-  height: 48px;
+const StyledSpinner = styled.div<{ $size: number }>`
+  width: ${(props) => props.$size}px;
+  height: ${(props) => props.$size}px;
   border: 5px solid #fff;
   border-bottom-color: transparent;
   border-radius: 50%;
@@ -20,6 +20,6 @@ const StyledSpinner = styled.div`
   animation: ${spin} 1s linear infinite;
 `;
 
-export default function LoadingSpinner() {
-  return <StyledSpinner />;
+export default function LoadingSpinner({ size = 48 }: { size?: number }) {
+  return <StyledSpinner $size={size} />;
 }

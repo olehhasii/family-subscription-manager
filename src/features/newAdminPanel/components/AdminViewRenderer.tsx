@@ -1,4 +1,6 @@
 import { ADMIN_VIEWS, type AdminPanelView } from '../../../types/adminTypes';
+import CreateMemberView from './form/CreateMemberView';
+import GroupSettingsView from './group/GroupSettingsView';
 import MemberListView from './members/MemberListView';
 
 interface AdminViewRendererProps {
@@ -10,10 +12,10 @@ export default function AdminViewRenderer({ view, onNavigate }: AdminViewRendere
   switch (view) {
     case ADMIN_VIEWS.MEMBERS_LIST:
       return <MemberListView onNavigate={onNavigate} />;
-    case ADMIN_VIEWS.BOARD_SETTINGS:
-      return <div>Board Settings...</div>;
+    case ADMIN_VIEWS.GROUP_SETTINGS:
+      return <GroupSettingsView />;
     case ADMIN_VIEWS.MEMBERS_CREATE:
-      return <div>Create Member</div>;
+      return <CreateMemberView />;
     case ADMIN_VIEWS.MEMBERS_EDIT:
       return <div>Edit member</div>;
     default:
