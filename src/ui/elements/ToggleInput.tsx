@@ -165,15 +165,15 @@ export default function ToggleInput({
 
   return (
     <ToggleContainer>
-      <ToggleBox $size={size} htmlFor={id} $checked={currentChecked}>
-        <Input type="checkbox" checked={currentChecked} id={id} name={name} onChange={handleToggle} />
-        <Circle $size={size} $checked={currentChecked} />
-      </ToggleBox>
       {label && (
         <Label $size={size} htmlFor={id}>
           {label}
         </Label>
       )}
+      <ToggleBox $size={size} htmlFor={id} $checked={currentChecked}>
+        <Input type="checkbox" checked={currentChecked} id={id} name={name} onChange={handleToggle} />
+        <Circle $size={size} $checked={currentChecked} />
+      </ToggleBox>
     </ToggleContainer>
   );
 }

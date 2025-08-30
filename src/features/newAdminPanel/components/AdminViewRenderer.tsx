@@ -15,7 +15,7 @@ export default function AdminViewRenderer({ view, onNavigate }: AdminViewRendere
     case ADMIN_VIEWS.GROUP_SETTINGS:
       return <GroupSettingsView />;
     case ADMIN_VIEWS.MEMBERS_CREATE:
-      return <CreateMemberView />;
+      return <CreateMemberView onNavigate={onNavigate} />;
     case ADMIN_VIEWS.MEMBERS_EDIT:
       return <div>Edit member</div>;
     default:
