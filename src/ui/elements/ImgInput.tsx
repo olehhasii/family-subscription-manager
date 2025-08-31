@@ -140,7 +140,6 @@ export default function ImgInput({
       const uploadedFile = event.target.files[0];
 
       setFile(URL.createObjectURL(uploadedFile));
-      console.log(URL.createObjectURL(uploadedFile));
     }
   };
 

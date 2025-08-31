@@ -7,3 +7,35 @@ export default function ChevronDown({ size = 40, color = 'currentColor', ...prop
     </svg>
   );
 }
+
+export function ChevronRight({ size = 40, color = 'currentColor', ...props }: IconComponentProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      {...props}
+      style={{ transform: 'rotate(270deg)' }}
+    >
+      <path d="M7 10L12 15L17 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ChevronLeft({ size = 40, color = 'currentColor', ...props }: IconComponentProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      {...props}
+      style={{ transform: 'rotate(90deg)' }}
+    >
+      <path d="M7 10L12 15L17 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}

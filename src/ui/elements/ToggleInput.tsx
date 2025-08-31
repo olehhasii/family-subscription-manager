@@ -58,7 +58,7 @@ const ToggleSizes = {
 const ToggleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--spacing-12);
+  gap: var(--spacing-8);
 `;
 
 const Label = styled.label<{ $size: Sizes }>`
