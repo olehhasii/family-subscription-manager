@@ -41,18 +41,21 @@ export const MemberName = styled.span``;
 
 const memberStatusVariants = {
   ok: css`
-    color: var(--color-green);
+    color: var(--color-text-primary);
+    background-color: rgba(34, 197, 94, 0.5);
   `,
   due: css`
-    color: var(--color-yellow);
+    color: var(--color-primary);
+    background-color: rgba(234, 178, 8, 0.5);
   `,
   overdue: css`
-    color: var(--color-red);
+    color: var(--color-text-primary);
+    background-color: rgba(220, 38, 38, 0.5);
   `,
   special: css`
-    color: var(--color-text-secondary);
-    background-color: var(--color-bg-secondary);
-    border-radius: var(--spacing-16);
+    color: var(--color-text-primary);
+    /* background-color: var(--color-bg-secondary); */
+    background-color: rgba(59, 131, 246, 0.7);
   `,
   unknown: css`
     color: var(--color-text-secondary);
@@ -72,6 +75,7 @@ export const MemberStatus = styled.span<{ $variant: MemberStatusesType }>`
   align-items: center;
   text-align: center;
   padding: var(--spacing-4) var(--spacing-6);
+  border-radius: var(--spacing-16);
   ${(props) => memberStatusVariants[props.$variant]}
 `;
 

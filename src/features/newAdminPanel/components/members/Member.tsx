@@ -26,7 +26,7 @@ export default function Member({ memberData, onEditMember }: MemberProps) {
   console.log(memberData);
 
   return (
-    <MemberContainer onClick={() => onEditMember(ADMIN_VIEWS.MEMBERS_EDIT, id)}>
+    <MemberContainer onClick={() => onEditMember(ADMIN_VIEWS.MEMBERS_EDIT, id)} $isBillable={isBillable}>
       <MemberHeader>
         <MemberAvatar src={avatarUrl ? avatarUrl : noAvatar} />
         <MemberDetails>

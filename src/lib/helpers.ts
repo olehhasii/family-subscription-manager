@@ -15,12 +15,12 @@ export const getMemberStatus = (paidUntil: string): { label: string; variant: Me
   }
 
   if (diffInDays <= 0) {
-    return { label: '🆘Overdue', variant: 'overdue' };
+    return { label: '🆘 Overdue', variant: 'overdue' };
   }
 
   if (diffInDays <= 7) {
-    return { label: '⚠️Due soon', variant: 'due' };
+    return { label: '⚠️ Due soon', variant: 'due' };
   }
 
-  return { label: '✅Up to date', variant: 'ok' };
+  return { label: '✅ Up to date', variant: 'ok' };
 };
