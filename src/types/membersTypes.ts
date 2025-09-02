@@ -3,8 +3,8 @@ export type Member = {
   name: string;
   email: string;
   paidUntil: string;
-  shouldPay: boolean;
-  avatarUrl: string;
+  isBillable: boolean;
+  avatarUrl: string | null;
 };
 
 export const MEMBER_STATUSES = {
@@ -12,6 +12,7 @@ export const MEMBER_STATUSES = {
   due: 'due',
   overdue: 'overdue',
   special: 'special',
+  unknown: 'unknown',
 };
 
 export type MemberStatusesType = keyof typeof MEMBER_STATUSES;

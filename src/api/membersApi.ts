@@ -128,6 +128,8 @@ export async function updateAvatar(id: string, newFile: File) {
 } */
 
 import supabase from '../supabase';
+import type { Member } from '../types/membersTypes';
+import { uploadImageToSupabase } from './fileApi';
 
 export async function getAllMembers() {
   const { data: members, error } = await supabase.from('Members').select('*');
@@ -137,4 +139,23 @@ export async function getAllMembers() {
   }
 
   return members;
+}
+
+export async function createMember(newMember: Omit<Member, 'id'>, avatar?: File) {
+  let avatarUrl = '';
+
+  if (avatar && avatar.size !== 0 && avatar.name !== '') {
+    avatarUrl = await uploadImageToSupabase(avatar, 'Avatars');
+  }
+
+  const { data, error } = await supabase
+    .from('Members')
+    .insert([{ ...newMember, avatarUrl }])
+    .select();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 }

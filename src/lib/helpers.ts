@@ -10,6 +10,10 @@ export const getMemberStatus = (paidUntil: string): { label: string; variant: Me
 
   const diffInDays = Math.round(differenceInDates / oneDayInMs);
 
+  if (!paidUntil) {
+    return { label: '❔Unknown', variant: 'unknown' };
+  }
+
   if (diffInDays <= 0) {
     return { label: '🆘Overdue', variant: 'overdue' };
   }

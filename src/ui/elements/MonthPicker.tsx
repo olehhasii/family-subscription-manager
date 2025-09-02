@@ -197,7 +197,7 @@ export default function MonthPicker({
       return true;
     }
 
-    if (monthIndex < currentDate.getMonth() && currentDate.getFullYear() === year) {
+    if (monthIndex <= currentDate.getMonth() && currentDate.getFullYear() === year) {
       return true;
     }
 

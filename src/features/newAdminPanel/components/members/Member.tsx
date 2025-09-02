@@ -19,23 +19,25 @@ interface MemberProps {
 }
 
 export default function Member({ memberData, onEditMember }: MemberProps) {
-  const { id, name, paidUntil, shouldPay, avatarUrl } = memberData;
+  const { id, name, paidUntil, isBillable, avatarUrl } = memberData;
 
   const memberStatus = getMemberStatus(paidUntil);
+
+  console.log(memberData);
 
   return (
     <MemberContainer onClick={() => onEditMember(ADMIN_VIEWS.MEMBERS_EDIT, id)}>
       <MemberHeader>
-        <MemberAvatar
-          src={avatarUrl ? `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/${avatarUrl}` : noAvatar}
-        />
+        <MemberAvatar src={avatarUrl ? avatarUrl : noAvatar} />
         <MemberDetails>
           <MemberName>{name}</MemberName>
-          {shouldPay && <MemberPaidDate>Paid until {getFormattedDate(paidUntil)}</MemberPaidDate>}
+          {isBillable && (
+            <MemberPaidDate>{paidUntil ? `Paid until ${getFormattedDate(paidUntil)}` : 'Not specified'}</MemberPaidDate>
+          )}
         </MemberDetails>
       </MemberHeader>
-      <MemberStatus $variant={shouldPay ? memberStatus.variant : 'special'}>
-        {shouldPay ? memberStatus.label : '💲No need for payments'}
+      <MemberStatus $variant={isBillable ? memberStatus.variant : 'special'}>
+        {isBillable ? memberStatus.label : '💲No need for payments'}
       </MemberStatus>
     </MemberContainer>
   );
