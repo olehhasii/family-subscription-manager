@@ -23,8 +23,6 @@ export default function Member({ memberData, onEditMember }: MemberProps) {
 
   const memberStatus = getMemberStatus(paidUntil);
 
-  console.log(memberData);
-
   return (
     <MemberContainer onClick={() => onEditMember(ADMIN_VIEWS.MEMBERS_EDIT, id)} $isBillable={isBillable}>
       <MemberHeader>

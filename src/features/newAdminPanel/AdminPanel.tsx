@@ -11,7 +11,7 @@ export default function AdminPanel() {
       <AdminNavigation activeView={activeView} onNavigate={navigateTo} />
 
       <AdminPanelContent>
-        <AdminViewRenderer view={activeView} onNavigate={navigateTo} />
+        <AdminViewRenderer view={activeView} onNavigate={navigateTo} selectedMemberId={selectedMemberId} />
       </AdminPanelContent>
     </AdminPanelContainer>
   );

@@ -141,6 +141,16 @@ export async function getAllMembers() {
   return members;
 }
 
+export async function getMembeById(id: number) {
+  const { data, error } = await supabase.from('Members').select().eq('id', id).single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
 export async function createMember(newMember: Omit<Member, 'id'>, avatar?: File) {
   let avatarUrl = '';
 
