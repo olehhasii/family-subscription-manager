@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useMember from '../../../../hooks/useMember';
-import type { AdminPanelView } from '../../../../types/adminTypes';
+import { ADMIN_VIEWS, type AdminPanelView } from '../../../../types/adminTypes';
 import Button from '../../../../ui/elements/Button';
 import ErrorContainer from '../../../../ui/elements/ErrorContainer';
 import Form from '../../../../ui/elements/Form';
@@ -10,6 +10,9 @@ import ToggleInput from '../../../../ui/elements/ToggleInput';
 import MonthPicker from '../../../../ui/elements/MonthPicker';
 import ImgInput from '../../../../ui/elements/ImgInput';
 import defaultAvatar from '../../../../assets/profile.png';
+
+import useMemberForm from '../../../../hooks/useMemberForm';
+import ActionsContainer from '../../../../ui/elements/ActionsContainer';
 
 interface EditMemberFormProps {
   onGoBack: (view: AdminPanelView, id?: number) => void;
@@ -27,19 +30,20 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
   }
 
   const { member, isError: isMemberError, isLoading: isMemberLoading } = useMember(selectedMemberId);
-  const [isBillable, setIsBillable] = useState(false);
 
-  useEffect(() => {
-    if (member?.isBillable !== undefined) {
-      setIsBillable(member.isBillable);
-    }
-  }, [member?.isBillable]);
+  const {
+    handleSubmit,
+    setIsBillable,
+    isBillable,
+    isError: isUpdatingError,
+    isPending: isUpdating,
+  } = useMemberForm({ mode: 'edit', member, onGoBack });
 
-  if (isMemberLoading) {
+  if (isMemberLoading || isUpdating) {
     return <LoadingSpinner />;
   }
 
-  if (isMemberError) {
+  if (isMemberError || isUpdatingError) {
     return (
       <ErrorContainer>
         <p>Error getting member data</p>
@@ -49,7 +53,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
   }
 
   return (
-    <Form>
+    <Form onSubmit={(event) => handleSubmit(event)}>
       <ToggleInput
         id="isBillable"
         name="isBillable"
@@ -57,7 +61,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
         /* defaultChecked={true} */
         checked={isBillable}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsBillable(e.target.checked)}
-        /* disabled={isPending} */
+        disabled={isUpdating}
       />
       <MonthPicker
         label="Date until paid"
@@ -75,7 +79,8 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
         label="Member Name"
         id="name"
         size="medium"
-        /* disabled={isPending} */ defaultValue={member.name}
+        disabled={isUpdating}
+        defaultValue={member.name}
       />
       <Input
         name="email"
@@ -83,7 +88,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
         label="Member email"
         id="email"
         size="medium"
-        /* disabled={isPending} */
+        disabled={isUpdating}
         defaultValue={member.email}
       />
       <ImgInput
@@ -93,8 +98,16 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
         defaultImg={member.avatarUrl || defaultAvatar}
         showUploadedFile
         size="medium"
-        /* disabled={isPending} */
+        disabled={isUpdating}
       />
+      <ActionsContainer align="flex-end">
+        <Button type="submit" variant="primary" disabled={isUpdating}>
+          {isUpdating ? 'Updating' : 'Add Member'}
+        </Button>
+        <Button onClick={() => onGoBack(ADMIN_VIEWS.MEMBERS_LIST)} disabled={isUpdating}>
+          Cancel
+        </Button>
+      </ActionsContainer>
     </Form>
   );
 }

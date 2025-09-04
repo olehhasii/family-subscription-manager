@@ -7,68 +7,15 @@ import defaultAvatar from '../../../../assets/profile.png';
 import ActionsContainer from '../../../../ui/elements/ActionsContainer';
 import { ADMIN_VIEWS, type AdminPanelView } from '../../../../types/adminTypes';
 import MonthPicker from '../../../../ui/elements/MonthPicker';
-import { useState } from 'react';
-import { toast } from 'sonner';
-import { createMember } from '../../../../api/membersApi';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { Member } from '../../../../types/membersTypes';
 import ErrorContainer from '../../../../ui/elements/ErrorContainer';
+import useMemberForm from '../../../../hooks/useMemberForm';
 
 interface CreateMemberFormProps {
   onGoBack: (view: AdminPanelView, id?: number) => void;
 }
 
 export default function CreateMemberForm({ onGoBack }: CreateMemberFormProps) {
-  const [isBillable, setIsBillable] = useState(true);
-
-  const queryClient = useQueryClient();
-
-  const { mutate, isError, isPending } = useMutation({
-    mutationFn: ({ newMember, avatar }: { newMember: Omit<Member, 'id'>; avatar: File }) =>
-      createMember(newMember, avatar),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['members'] });
-      toast.success('Member Created');
-      onGoBack(ADMIN_VIEWS.MEMBERS_LIST);
-    },
-    onError: (err: Error) => {
-      toast.error(err.message || 'Error creating member');
-    },
-  });
-
-  const handleCreateMember = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target as HTMLFormElement);
-
-    const newMember = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      isBillable: Boolean(formData.get('isBillable')),
-      paidUntil: (formData.get('paidUntil') as string) || '',
-      avatarUrl: '',
-    };
-
-    const avatar = formData.get('avatar') as File;
-
-    if (avatar && avatar.size > 5 * 1024 * 1024) {
-      toast.error('Avatar file is too large (max 5MB)');
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!newMember.email || !emailRegex.test(newMember.email)) {
-      toast.error('Please enter a valid email address');
-      return;
-    }
-
-    if (!newMember.name) {
-      toast.error('Please fill in name and email');
-      return;
-    }
-
-    mutate({ newMember, avatar });
-  };
+  const { handleSubmit, setIsBillable, isBillable, isError, isPending } = useMemberForm({ mode: 'create', onGoBack });
 
   if (isError) {
     return (
@@ -80,7 +27,7 @@ export default function CreateMemberForm({ onGoBack }: CreateMemberFormProps) {
   }
 
   return (
-    <Form onSubmit={handleCreateMember}>
+    <Form onSubmit={(event) => handleSubmit(event)}>
       <Input name="name" placeholder="Oleh" label="Member Name" id="name" size="medium" disabled={isPending} />
       <Input
         name="email"

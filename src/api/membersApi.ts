@@ -169,3 +169,12 @@ export async function createMember(newMember: Omit<Member, 'id'>, avatar?: File)
 
   return data;
 }
+
+export async function updateMember(updatedMemberData: Omit<Member, 'id'>, id: number, avatar?: File) {
+  // 1) Check if added new Avatar
+  // 2) Delete old and upload new file
+  // 3) If uploaded new avatar add new URL to the data
+  // 4) update
+
+  console.log(updatedMemberData, id, avatar);
+}
