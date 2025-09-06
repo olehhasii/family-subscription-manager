@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import useMember from '../../../../hooks/useMember';
 import { ADMIN_VIEWS, type AdminPanelView } from '../../../../types/adminTypes';
 import Button from '../../../../ui/elements/Button';
@@ -13,6 +12,7 @@ import defaultAvatar from '../../../../assets/profile.png';
 
 import useMemberForm from '../../../../hooks/useMemberForm';
 import ActionsContainer from '../../../../ui/elements/ActionsContainer';
+import DeleteMemberModal from './DeleteMemberModal';
 
 interface EditMemberFormProps {
   onGoBack: (view: AdminPanelView, id?: number) => void;
@@ -102,8 +102,12 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
       />
       <ActionsContainer align="flex-end">
         <Button type="submit" variant="primary" disabled={isUpdating}>
-          {isUpdating ? 'Updating' : 'Add Member'}
+          {isUpdating ? 'Updating' : 'Update Member'}
         </Button>
+        {/* <Button disabled={isUpdating} variant="danger">
+          Delete Member
+        </Button> */}
+        <DeleteMemberModal />
         <Button onClick={() => onGoBack(ADMIN_VIEWS.MEMBERS_LIST)} disabled={isUpdating}>
           Cancel
         </Button>
