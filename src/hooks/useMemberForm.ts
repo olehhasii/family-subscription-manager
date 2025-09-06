@@ -89,7 +89,8 @@ export default function useMemberForm({ mode, member, onGoBack }: UseMemberFormP
       memberId: number;
     }) => updateMember(updatedData, memberId, avatar),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['members', `member-${member?.id}`] });
+      queryClient.invalidateQueries({ queryKey: ['members'] });
+      queryClient.invalidateQueries({ queryKey: ['member', member?.id] });
       toast.success('Member Updated');
       onGoBack(ADMIN_VIEWS.MEMBERS_LIST);
     },

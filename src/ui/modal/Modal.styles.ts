@@ -8,6 +8,7 @@ export const ModalContainer = styled.div`
   background-color: var(--color-bg-main);
   border: var(--border);
   border-radius: var(--spacing-16);
+  width: clamp(300px, 50%, 500px);
   max-width: 500px;
 
   padding: var(--spacing-16) var(--spacing-20);

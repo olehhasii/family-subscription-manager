@@ -107,7 +107,11 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
         {/* <Button disabled={isUpdating} variant="danger">
           Delete Member
         </Button> */}
-        <DeleteMemberModal />
+        <DeleteMemberModal
+          memberId={member.id}
+          onGoBack={() => onGoBack(ADMIN_VIEWS.MEMBERS_LIST)}
+          avatarUrl={member.avatarUrl}
+        />
         <Button onClick={() => onGoBack(ADMIN_VIEWS.MEMBERS_LIST)} disabled={isUpdating}>
           Cancel
         </Button>

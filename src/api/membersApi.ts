@@ -171,10 +171,40 @@ export async function createMember(newMember: Omit<Member, 'id'>, avatar?: File)
 }
 
 export async function updateMember(updatedMemberData: Omit<Member, 'id'>, id: number, avatar?: File) {
-  // 1) Check if added new Avatar
-  // 2) Delete old and upload new file
-  // 3) If uploaded new avatar add new URL to the data
-  // 4) update
+  let avatarUrl = updatedMemberData.avatarUrl;
 
-  console.log(updatedMemberData, id, avatar);
+  if (avatar && avatar.size !== 0 && avatar.name !== '') {
+    deleteAvatar(avatarUrl);
+    avatarUrl = await uploadImageToSupabase(avatar, 'Avatars');
+  }
+
+  const { error } = await supabase
+    .from('Members')
+    .update({ ...updatedMemberData, avatarUrl })
+    .eq('id', id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteAvatar(avatarUrl: string | null) {
+  if (!avatarUrl) return;
+
+  const filePath = avatarUrl.split('/Avatars/')[1];
+
+  const { error } = await supabase.storage.from('Avatars').remove([filePath]);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteMember(id: number, avatarUrl?: string) {
+  const { error } = await supabase.from('Members').delete().eq('id', id);
+  deleteAvatar(avatarUrl || null);
+
+  if (error) {
+    throw new Error(error.message);
+  }
 }

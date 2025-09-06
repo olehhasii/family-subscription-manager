@@ -6,17 +6,8 @@ import { createPortal } from 'react-dom';
 import Button from '../elements/Button';
 
 interface ModalProps {
-  /* isOpen: boolean;
-  children: React.ReactNode; */
   children: React.ReactNode;
 }
-/*
-export default function Modal({ children, isOpen }: ModalProps) {
-  if (!isOpen) return null;
-
-  return <Overlay>{children}</Overlay>;
-}
- */
 
 const ModalContext = createContext<{
   isOpen: boolean;
@@ -84,8 +75,16 @@ function ModalCancelAction() {
 }
 
 function ModalConfirmAction({ onClick }: { onClick: () => void }) {
+  const { setIsOpen } = useModalContext();
+
   return (
-    <Button variant="primary" onClick={onClick}>
+    <Button
+      variant="primary"
+      onClick={() => {
+        onClick();
+        setIsOpen(false);
+      }}
+    >
       Confirm
     </Button>
   );
