@@ -7,6 +7,10 @@ export const AdminNavigationContainer = styled.ul`
   gap: var(--spacing-12);
   list-style: none;
   margin-bottom: var(--spacing-12);
+
+  @media (max-width: 768px) {
+    gap: var(--spacing-8);
+  }
 `;
 
 export const AdminNavGroup = styled.li``;
@@ -19,6 +23,11 @@ export const AdminNavButton = styled.button<{ $active?: boolean }>`
   border-radius: var(--spacing-12);
   outline: none;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-4) var(--spacing-4);
+    font-size: var(--text-md);
+  }
 
   &:hover {
     color: var(--color-text-primary);

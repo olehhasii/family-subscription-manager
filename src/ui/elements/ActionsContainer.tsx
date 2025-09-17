@@ -4,6 +4,7 @@ const StyledActionsContainer = styled.div<{ $direction: 'column' | 'row'; $align
   display: flex;
   flex-direction: ${(props) => props.$direction};
   justify-content: ${(props) => props.$align};
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--spacing-12);
 `;

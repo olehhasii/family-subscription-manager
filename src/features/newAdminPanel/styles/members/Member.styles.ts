@@ -18,6 +18,10 @@ export const MemberContainer = styled.div<{ $isBillable?: boolean }>`
   &:hover {
     background-color: var(--color-bg-accent);
   }
+
+  @media (max-width: 768px) {
+    gap: var(--spacing-12);
+  }
 `;
 
 export const MemberHeader = styled.div`
@@ -77,6 +81,10 @@ export const MemberStatus = styled.span<{ $variant: MemberStatusesType }>`
   padding: var(--spacing-4) var(--spacing-6);
   border-radius: var(--spacing-16);
   ${(props) => memberStatusVariants[props.$variant]}
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-4) var(--spacing-4);
+  }
 `;
 
 export const NoMembers = styled.div`
