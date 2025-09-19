@@ -78,8 +78,6 @@ export default function EditMemberForm({
       shouldPay: formData.get('shouldPay') ? true : false,
     };
 
-    console.log(newData);
-
     if (!newData.name || !newData.email) {
       toast.error('Some fields are empty');
     } else {

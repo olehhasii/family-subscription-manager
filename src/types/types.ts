@@ -15,7 +15,7 @@ export type Member = {
   name: string;
   email: string;
   paidUntill: string;
-  shouldPay: boolean;
+  isBillable: boolean;
   avatarUrl: string;
 };
 

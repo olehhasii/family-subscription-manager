@@ -1,4 +1,4 @@
-import supabase from '../supabase';
+/* import supabase from '../supabase';
 import type { Member } from '../types/types';
 
 export async function createMember(newMember: Omit<Member, 'id'>, file: File) {
@@ -125,4 +125,86 @@ export async function updateAvatar(id: string, newFile: File) {
   const newPath = await uploadAvatar(newFile);
 
   return newPath;
+} */
+
+import supabase from '../supabase';
+import type { Member } from '../types/membersTypes';
+import { uploadImageToSupabase } from './fileApi';
+
+export async function getAllMembers() {
+  const { data: members, error } = await supabase.from('Members').select('*');
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return members;
+}
+
+export async function getMembeById(id: number) {
+  const { data, error } = await supabase.from('Members').select().eq('id', id).single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function createMember(newMember: Omit<Member, 'id'>, avatar?: File) {
+  let avatarUrl = '';
+
+  if (avatar && avatar.size !== 0 && avatar.name !== '') {
+    avatarUrl = await uploadImageToSupabase(avatar, 'Avatars');
+  }
+
+  const { data, error } = await supabase
+    .from('Members')
+    .insert([{ ...newMember, avatarUrl }])
+    .select();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
+export async function updateMember(updatedMemberData: Omit<Member, 'id'>, id: number, avatar?: File) {
+  let avatarUrl = updatedMemberData.avatarUrl;
+
+  if (avatar && avatar.size !== 0 && avatar.name !== '') {
+    deleteAvatar(avatarUrl);
+    avatarUrl = await uploadImageToSupabase(avatar, 'Avatars');
+  }
+
+  const { error } = await supabase
+    .from('Members')
+    .update({ ...updatedMemberData, avatarUrl })
+    .eq('id', id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteAvatar(avatarUrl: string | null) {
+  if (!avatarUrl) return;
+
+  const filePath = avatarUrl.split('/Avatars/')[1];
+
+  const { error } = await supabase.storage.from('Avatars').remove([filePath]);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function deleteMember(id: number, avatarUrl?: string) {
+  const { error } = await supabase.from('Members').delete().eq('id', id);
+  deleteAvatar(avatarUrl || null);
+
+  if (error) {
+    throw new Error(error.message);
+  }
 }

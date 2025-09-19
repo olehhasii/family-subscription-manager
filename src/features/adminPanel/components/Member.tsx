@@ -15,6 +15,23 @@ export default function Member({ onClick, memberData }: MemberProps) {
   const paidUntillDate = new Date(paidUntill);
   const status = checkDateStatus(paidUntillDate);
 
+  if (!shouldPay) {
+    return (
+      <MemberItem onClick={onClick}>
+        <MemberItemInfo>
+          <img
+            src={avatarUrl ? `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/${avatarUrl}` : noAvatar}
+          />
+          <div>
+            <MemberName>{name}</MemberName>
+            <MemberDate>No need to pay</MemberDate>
+          </div>
+        </MemberItemInfo>
+        <MemberBadge $variant={'success'}>{status.label}</MemberBadge>
+      </MemberItem>
+    );
+  }
+
   return (
     <MemberItem onClick={onClick}>
       <MemberItemInfo>
