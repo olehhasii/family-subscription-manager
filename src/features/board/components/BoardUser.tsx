@@ -1,17 +1,17 @@
-import {
-  PaidUntil,
-  PaidUntilPlaceholderText,
-  StyledBoardUser,
-  UserHeader,
-  UserInfo,
-  UserName,
-} from '../styles/BoardUser.styles';
+import { StyledBoardUser, UserHeader, UserInfo, UserName, UserPaidDate, UserStatus } from '../styles/BoardUser.styles';
 
-import avatarImg from '../../../assets/avatar2.png';
+import noAvatar from '../../../assets/avatarPlaceholder.svg';
 import type { Variants } from 'motion';
 import { easeOut, motion } from 'motion/react';
+import type { Member } from '../../../types/membersTypes';
+import { getFormattedDate } from '../../../lib/dates';
+import { getMemberStatus } from '../../../lib/helpers';
 
-export default function BoardUser() {
+interface BoardUserProps {
+  user: Member;
+}
+
+export default function BoardUser({ user }: BoardUserProps) {
   const boardUserVariants: Variants = {
     hidden: {
       y: 200,
@@ -26,20 +26,26 @@ export default function BoardUser() {
     },
   };
 
+  const { name, paidUntil, isBillable, avatarUrl } = user;
+  const memberStatus = getMemberStatus(paidUntil);
+
   return (
     <StyledBoardUser as={motion.div} variants={boardUserVariants}>
       <UserHeader>
-        <img src={avatarImg} alt="User" />
+        <img src={avatarUrl ? avatarUrl : noAvatar} alt="User" />
         <UserInfo>
-          <UserName>Oleh</UserName>
-          <span>Up to date</span>
+          <UserName>{name}</UserName>
+          {isBillable && (
+            <UserPaidDate $variant={isBillable ? memberStatus.variant : 'special'}>
+              {paidUntil ? `Paid untill ${getFormattedDate(paidUntil)}` : 'Not specified'}
+            </UserPaidDate>
+          )}
         </UserInfo>
       </UserHeader>
 
-      <PaidUntil>
-        <PaidUntilPlaceholderText>Paid untill</PaidUntilPlaceholderText>
-        <span>September 2025</span>
-      </PaidUntil>
+      <UserStatus $variant={isBillable ? memberStatus.variant : 'special'}>
+        {isBillable ? memberStatus.label : '💲No need for payments'}
+      </UserStatus>
     </StyledBoardUser>
   );
 }

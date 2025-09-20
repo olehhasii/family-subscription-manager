@@ -6,7 +6,7 @@ export const StyledIsland = styled.div`
   max-width: 360px;
   overflow: hidden;
   min-height: 30px;
-  background-color: var(--color-dark);
+  background-color: var(--color-bg-main);
   color: var(--color-text-primary);
 `;
 

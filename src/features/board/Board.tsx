@@ -2,6 +2,8 @@ import { easeOut, type Variants } from 'motion';
 import BoardUser from './components/BoardUser';
 import { BoardHeader, BoardUsers, StyledBoard } from './styles/Board.styles';
 import { motion } from 'motion/react';
+import useMembers from '../../hooks/useMembers';
+import useGroup from '../../hooks/useGroup';
 
 export default function Board() {
   const boardVariants: Variants = {
@@ -25,19 +27,23 @@ export default function Board() {
     },
   };
 
+  const { members, isError: isMembersError } = useMembers();
+  const { groupSettings, isError: isGroupSettingsError } = useGroup();
+
+  if (isMembersError || isGroupSettingsError) {
+    return <p>Error Loading Members</p>;
+  }
+
   return (
     <StyledBoard as={motion.div} variants={boardVariants} initial="hidden" animate="visible">
       <BoardHeader>
-        <h2>Payment Statuses</h2>
-        <span>$7.49 / month</span>
+        <h2>{groupSettings?.groupName}</h2>
+        <span>{`${groupSettings?.membershipPrice} ${groupSettings?.currency}`} / month</span>
       </BoardHeader>
       <BoardUsers>
-        <BoardUser />
-        <BoardUser />
-        <BoardUser />
-        <BoardUser />
-        <BoardUser />
-        <BoardUser />
+        {members?.map((member) => (
+          <BoardUser user={member} key={member.id} />
+        ))}
       </BoardUsers>
     </StyledBoard>
   );

@@ -6,11 +6,12 @@ export const StyledBoard = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10; */
-  background-color: var(--color-dark);
+  background-color: var(--color-bg-main);
   color: var(--color-text-primary);
   padding: var(--spacing-8) var(--spacing-16) var(--spacing-16);
   border-radius: var(--spacing-28);
   width: 360px;
+  border: var(--border);
 `;
 
 export const BoardHeader = styled.div`

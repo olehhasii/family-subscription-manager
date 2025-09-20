@@ -6,6 +6,7 @@ import GlobalStyle from './styles/GlobalStyles';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'sonner';
 import AdminPanel from './features/newAdminPanel/AdminPanel';
+import { BrowserRouter, Route, Routes } from 'react-router';
 
 const queryClient = new QueryClient();
 
@@ -14,11 +15,23 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <Toaster richColors />
-      <Wrapper>
-        {/* <Board />
-        <Island /> */}
-        <AdminPanel />
-      </Wrapper>
+      <BrowserRouter>
+        <Wrapper>
+          <Routes>
+            <Route
+              index
+              element={
+                <>
+                  <Board />
+                  <Island />
+                  {/* <AdminPanel /> */}
+                </>
+              }
+            />
+            <Route path="admin" element={<AdminPanel />} />
+          </Routes>
+        </Wrapper>
+      </BrowserRouter>
       <GlobalStyle />
     </QueryClientProvider>
   );
