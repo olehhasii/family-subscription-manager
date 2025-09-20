@@ -14,11 +14,11 @@ export default function Island() {
   const [isInfoOpened, setIsInfoOpened] = useState(false);
 
   const islandVariants: Variants = {
-    initial: { y: -200 },
+    initial: { y: 400 },
     navbar: {
       y: 0,
       transition: {
-        y: { duration: 0.5, type: 'spring', bounce: 0.4 },
+        y: { duration: 0.5, type: 'spring', bounce: 0.3 },
       },
     },
     info: {

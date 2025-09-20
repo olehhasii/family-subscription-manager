@@ -2,10 +2,10 @@ import { easeOut, type Variants } from 'motion';
 import BoardUser from './components/BoardUser';
 import { BoardHeader, BoardUsers, StyledBoard } from './styles/Board.styles';
 import { motion } from 'motion/react';
-import useMembers from '../../hooks/useMembers';
 import useGroup from '../../hooks/useGroup';
+import type { Member } from '../../types/membersTypes';
 
-export default function Board() {
+export default function Board({ members }: { members: Array<Member> }) {
   const boardVariants: Variants = {
     hidden: {
       y: 700,
@@ -27,10 +27,9 @@ export default function Board() {
     },
   };
 
-  const { members, isError: isMembersError } = useMembers();
   const { groupSettings, isError: isGroupSettingsError } = useGroup();
 
-  if (isMembersError || isGroupSettingsError) {
+  if (isGroupSettingsError) {
     return <p>Error Loading Members</p>;
   }
 

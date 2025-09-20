@@ -10,7 +10,8 @@ export const StyledBoardUser = styled.div`
   padding: var(--spacing-8) var(--spacing-12);
   font-size: var(--text-md);
   border: var(--border);
-
+  /* min-height: 63px;
+ */
   &:hover {
     background-color: var(--color-bg-accent);
   }

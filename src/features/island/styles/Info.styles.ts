@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InfoWrapper = styled.div`
-  background-color: var(--color-dark);
+  background-color: var(--color-bg-main);
   border-radius: var(--spacing-28);
   color: var(--color-text-primary);
   position: absolute;

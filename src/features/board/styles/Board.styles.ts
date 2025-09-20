@@ -11,6 +11,7 @@ export const StyledBoard = styled.div`
   padding: var(--spacing-8) var(--spacing-16) var(--spacing-16);
   border-radius: var(--spacing-28);
   width: 360px;
+  min-height: 537px;
   border: var(--border);
 `;
 
