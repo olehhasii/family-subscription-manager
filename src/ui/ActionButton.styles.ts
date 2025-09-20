@@ -32,3 +32,19 @@ export const StyledCloseButton = styled.button<StyledActionButtonProps>`
   z-index: 20;
   cursor: pointer;
 `;
+
+export const CloseLoginButton = styled.button<StyledActionButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  z-index: 20;
+  cursor: pointer;
+`;

@@ -73,7 +73,13 @@ const MenuButton = ({ icon, content, contentWidth = 60, onClick, as = 'button', 
   );
 };
 
-export default function Menu({ onCloseMenu }: { onCloseMenu: () => void }) {
+export default function Menu({
+  onCloseMenu,
+  onOpenAdminLogin,
+}: {
+  onCloseMenu: () => void;
+  onOpenAdminLogin: () => void;
+}) {
   const iconVariants: Variants = {
     hovered: { fill: '#000000' },
   };
@@ -118,6 +124,7 @@ export default function Menu({ onCloseMenu }: { onCloseMenu: () => void }) {
         icon={<LoginIcon size={24} color="#ffffff" variants={iconVariants} />}
         contentWidth={80}
         content="Admin Panel"
+        onClick={onOpenAdminLogin}
       />
     </StyledMenu>
   );
