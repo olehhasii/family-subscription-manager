@@ -1,3 +1,4 @@
+import { useLogout } from '../../../hooks/useLogout';
 import { ADMIN_VIEWS, type AdminPanelView } from '../../../types/adminTypes';
 import { AdminNavButton, AdminNavGroup, AdminNavigationContainer } from '../styles/AdminNavigation..styles';
 
@@ -7,6 +8,12 @@ interface AdminNavigationProps {
 }
 
 export default function AdminNavigation({ onNavigate, activeView }: AdminNavigationProps) {
+  const logoutMutation = useLogout();
+
+  const handleLogout = () => {
+    logoutMutation.mutate();
+  };
+
   return (
     <AdminNavigationContainer>
       <AdminNavGroup>
@@ -26,7 +33,7 @@ export default function AdminNavigation({ onNavigate, activeView }: AdminNavigat
         </AdminNavButton>
       </AdminNavGroup>
       <AdminNavGroup>
-        <AdminNavButton>🏃Logout</AdminNavButton> {/* TODO: logut admin to main page */}
+        <AdminNavButton onClick={handleLogout}>🏃Logout</AdminNavButton>
       </AdminNavGroup>
     </AdminNavigationContainer>
   );

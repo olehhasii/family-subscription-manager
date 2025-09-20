@@ -152,6 +152,15 @@ export async function getMembeById(id: number) {
 }
 
 export async function createMember(newMember: Omit<Member, 'id'>, avatar?: File) {
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error('Unauthorized');
+  }
+
   let avatarUrl = '';
 
   if (avatar && avatar.size !== 0 && avatar.name !== '') {
@@ -171,6 +180,15 @@ export async function createMember(newMember: Omit<Member, 'id'>, avatar?: File)
 }
 
 export async function updateMember(updatedMemberData: Omit<Member, 'id'>, id: number, avatar?: File) {
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error('Unauthorized');
+  }
+
   let avatarUrl = updatedMemberData.avatarUrl;
 
   if (avatar && avatar.size !== 0 && avatar.name !== '') {
@@ -189,6 +207,15 @@ export async function updateMember(updatedMemberData: Omit<Member, 'id'>, id: nu
 }
 
 export async function deleteAvatar(avatarUrl: string | null) {
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error('Unauthorized');
+  }
+
   if (!avatarUrl) return;
 
   const filePath = avatarUrl.split('/Avatars/')[1];
@@ -201,6 +228,15 @@ export async function deleteAvatar(avatarUrl: string | null) {
 }
 
 export async function deleteMember(id: number, avatarUrl?: string) {
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error('Unauthorized');
+  }
+
   const { error } = await supabase.from('Members').delete().eq('id', id);
   deleteAvatar(avatarUrl || null);
 

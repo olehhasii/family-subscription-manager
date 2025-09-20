@@ -12,6 +12,15 @@ export async function getGroupSettings() {
 }
 
 export async function updateGroupSettings(updatedData: GroupType, id: number) {
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    throw new Error('Unauthorized');
+  }
+
   const { data, error } = await supabase
     .from('Group')
     .update({ ...updatedData })
