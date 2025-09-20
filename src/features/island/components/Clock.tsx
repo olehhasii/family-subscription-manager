@@ -27,7 +27,7 @@ export default function Clock({ ...rest }: ClockProps) {
     const timeoutId = setTimeout(() => {
       setTimestamp(Date.now());
 
-      intervalId = setInterval(() => {
+      intervalId = window.setInterval(() => {
         setTimestamp(Date.now());
       }, 1000);
     }, msUntilNextSecond);
