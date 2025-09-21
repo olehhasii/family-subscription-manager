@@ -29,17 +29,23 @@ const MenuButton = ({ icon, content, contentWidth = 60, onClick, as = 'button', 
       scale: 1,
       filter: 'blur(0px)',
       opacity: 1,
-      transition: { ease: easeOut, duration: 0.3, delay: 0.3 },
+      transition: {
+        ease: easeOut,
+        duration: 0.3,
+        delay: 0.3,
+      },
     },
     exit: {
       scale: 0,
       filter: 'blur(10px)',
       opacity: 0,
-      transition: { ease: easeOut, duration: 0.2 },
+      transition: {
+        ease: easeOut,
+        duration: 0.2,
+      },
     },
     hovered: {
       backgroundColor: theme === 'dark' ? '#ffffff' : '#212529',
-      border: 'var(--border)',
     },
   };
 

@@ -25,6 +25,8 @@ export const StyledMenuButton = styled.button`
   text-decoration: none;
   background-color: transparent;
 
+  transition: none !important;
+
   &:visited {
     text-decoration: none;
   }
