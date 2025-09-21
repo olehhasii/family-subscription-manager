@@ -24,7 +24,7 @@ const GlobalStyle = styled.createGlobalStyle`
   }
   body {
     background-color: var(--color-bg-page);
-    min-height: 100vh;
+    min-height: 100svh;
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
     overflow: hidden;
@@ -69,7 +69,7 @@ const GlobalStyle = styled.createGlobalStyle`
     max-width: 1280px;
     margin: 0 auto;
     isolation: isolate;
-    min-height: 100vh;
+    min-height: 100svh;
     transition:
       background-color 0.3s ease,
       color 0.3s ease;

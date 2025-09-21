@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   gap: var(--spacing-16);
   width: 100%;
-  height: 100vh;
+  height: 100svh;
 `;
 
 export const Overlay = styled.div`

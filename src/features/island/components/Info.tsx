@@ -16,7 +16,7 @@ export default function Info({ onCloseInfo }: InfoProps) {
       <InfoWrapper
         as={motion.div}
         initial={{ width: '360px', height: '60px' }}
-        animate={{ width: '360px', height: '620px' }}
+        animate={{ width: '360px', height: '610px' }}
         exit={{ height: '60px', width: '360px', transition: { delay: 0.3 } }}
       >
         <CloseButton onClose={onCloseInfo} />
