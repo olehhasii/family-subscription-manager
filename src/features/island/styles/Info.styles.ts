@@ -26,3 +26,16 @@ export const InfoImgWrapper = styled.div`
     object-fit: cover;
   }
 `;
+
+export const InfoTextContainer = styled.div`
+  margin-top: var(--spacing-12);
+`;
+
+export const InfoText = styled.p`
+  margin-top: var(--spacing-8);
+  text-align: justify;
+`;
+
+export const InfoLink = styled.a`
+  color: #f43f5e;
+`;
