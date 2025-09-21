@@ -29,6 +29,9 @@ const GlobalStyle = styled.createGlobalStyle`
     line-height: 1.5;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
   img,
   canvas,
@@ -67,6 +70,17 @@ const GlobalStyle = styled.createGlobalStyle`
     margin: 0 auto;
     isolation: isolate;
     min-height: 100vh;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  * {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   :root {
