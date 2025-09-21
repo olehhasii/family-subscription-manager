@@ -29,6 +29,9 @@ const GlobalStyle = styled.createGlobalStyle`
     line-height: 1.5;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
   img,
   canvas,
@@ -67,6 +70,17 @@ const GlobalStyle = styled.createGlobalStyle`
     margin: 0 auto;
     isolation: isolate;
     min-height: 100vh;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  * {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   :root {
@@ -74,29 +88,21 @@ const GlobalStyle = styled.createGlobalStyle`
     --color-dark: #100c08;
     --color-gray: #757575;
 
-    /* --color-bg-main: #181816;
-    --color-bg-secondary: #282724;
-    --color-bg-accent: #282724; */
-
     --color-red: #b02525;
     --color-green: #15803d;
     --color-yellow: #ffb84d;
 
-    /* --color-text-primary: #ffffff;
-    --color-text-secondary: #b7b7b7ff;
-    --color-text-dark: #000000; */
+    --color-bg-page: #ffffff;
+    --color-bg-main: #f8f9fa;
+    --color-bg-accent: #e9ecef;
+    --color-bg-secondary: #f1f3f4;
+    --color-bg-primary: #212529;
 
-    --border: 1px solid oklch(100% 0 0 / 0.1);
+    --color-text-primary: #212529;
+    --color-text-secondary: #6c757d;
+    --color-text-dark: #ffffff;
 
-    --color-bg-page: #0a0a0a;
-    --color-bg-main: #171717;
-    --color-bg-accent: #404040;
-    --color-bg-secondary: #262626;
-    --color-bg-primary: #e5e5e5;
-
-    --color-text-primary: #fafafa;
-    --color-text-secondary: #a1a1a1;
-    --color-text-dark: #000000;
+    --border: 1px solid oklch(0 0 0 / 0.1);
 
     --text-xs: 0.625rem; /* 10px */
     --text-s: 0.75rem; /* 12px */
@@ -127,8 +133,25 @@ const GlobalStyle = styled.createGlobalStyle`
   }
 
   :root[data-theme='dark'] {
-    --bg: #121212;
-    --text: #f5f5f5;
+    --color-light: #fafafa;
+    --color-dark: #100c08;
+    --color-gray: #757575;
+
+    --color-red: #b02525;
+    --color-green: #15803d;
+    --color-yellow: #ffb84d;
+
+    --border: 1px solid oklch(100% 0 0 / 0.1);
+
+    --color-bg-page: #0a0a0a;
+    --color-bg-main: #171717;
+    --color-bg-accent: #404040;
+    --color-bg-secondary: #262626;
+    --color-bg-primary: #e5e5e5;
+
+    --color-text-primary: #fafafa;
+    --color-text-secondary: #a1a1a1;
+    --color-text-dark: #000000;
   }
 `;
 

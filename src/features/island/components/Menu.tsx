@@ -6,6 +6,7 @@ import LoginIcon from '../../../icons/LoginIcon';
 
 import { MenuItem, StyledMenu, StyledMenuButton } from '../styles/Menu.styles';
 import { easeOut, motion } from 'motion/react';
+import { useTheme } from '../../../contexts/ThemeContext';
 
 interface MenuButtonProps {
   icon: React.ReactNode;
@@ -14,9 +15,10 @@ interface MenuButtonProps {
   contentWidth?: number | string;
   onClick?: () => void;
   link?: string;
+  theme: 'light' | 'dark';
 }
 
-const MenuButton = ({ icon, content, contentWidth = 60, onClick, as = 'button', link }: MenuButtonProps) => {
+const MenuButton = ({ icon, content, contentWidth = 60, onClick, as = 'button', link, theme }: MenuButtonProps) => {
   const buttonVariants: Variants = {
     hidden: {
       scale: 0,
@@ -36,7 +38,8 @@ const MenuButton = ({ icon, content, contentWidth = 60, onClick, as = 'button', 
       transition: { ease: easeOut, duration: 0.2 },
     },
     hovered: {
-      backgroundColor: 'white',
+      backgroundColor: theme === 'dark' ? '#ffffff' : '#212529',
+      border: 'var(--border)',
     },
   };
 
@@ -80,8 +83,15 @@ export default function Menu({
   onCloseMenu: () => void;
   onOpenAdminLogin: () => void;
 }) {
+  const { theme } = useTheme();
+
+  const iconsColor = {
+    default: theme === 'dark' ? '#ffffff' : '#000000',
+    hovered: theme === 'dark' ? '#000000' : '#ffffff',
+  };
+
   const iconVariants: Variants = {
-    hovered: { fill: '#000000' },
+    hovered: { fill: iconsColor.hovered },
   };
 
   const menuVariants: Variants = {
@@ -101,30 +111,34 @@ export default function Menu({
   return (
     <StyledMenu as={motion.ul} variants={menuVariants} initial="initial" animate="animate" exit="exit">
       <MenuButton
-        icon={<BackIcon size={24} color="#ffffff" variants={iconVariants} />}
+        icon={<BackIcon size={24} color={iconsColor.default} variants={iconVariants} />}
         content="Back"
         contentWidth={50}
         onClick={onCloseMenu}
+        theme={theme}
       />
       <MenuButton
-        icon={<GithubIcon size={24} color="#ffffff" variants={iconVariants} />}
+        icon={<GithubIcon size={24} color={iconsColor.default} variants={iconVariants} />}
         contentWidth={80}
         as="link"
         link="https://github.com/olehhasii/family-subscription-manager"
         content="Github Repo"
+        theme={theme}
       />
       <MenuButton
-        icon={<ContactMeIcon size={24} color="#ffffff" variants={iconVariants} />}
+        icon={<ContactMeIcon size={24} color={iconsColor.default} variants={iconVariants} />}
         contentWidth={85}
         as="link"
         link="https://www.linkedin.com/in/oleh-hasii/"
         content="Contact me"
+        theme={theme}
       />
       <MenuButton
-        icon={<LoginIcon size={24} color="#ffffff" variants={iconVariants} />}
+        icon={<LoginIcon size={24} color={iconsColor.default} variants={iconVariants} />}
         contentWidth={80}
         content="Admin Panel"
         onClick={onOpenAdminLogin}
+        theme={theme}
       />
     </StyledMenu>
   );

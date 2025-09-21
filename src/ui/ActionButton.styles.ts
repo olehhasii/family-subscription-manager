@@ -15,6 +15,7 @@ export const StyledActionButton = styled.button<StyledActionButtonProps>`
   border: none;
   outline: none;
   cursor: pointer;
+  border: var(--border);
 `;
 
 export const StyledCloseButton = styled.button<StyledActionButtonProps>`

@@ -1,5 +1,4 @@
 import { easeOut } from 'motion';
-import DarkThemeIcon from '../../../icons/DarkThemeIcon';
 import InfoIcon from '../../../icons/InfoIcon';
 import MoreIcon from '../../../icons/MoreIcon';
 
@@ -8,6 +7,7 @@ import Clock from './Clock';
 import { motion, type Variants } from 'motion/react';
 import ActionButton from '../../../ui/ActionButton';
 import { Actions, HorizontalLine, Logo, StyledNav } from '../styles/NavBar.styles';
+import ThemeToggle from './ThemeToggle';
 
 interface NavBarProps {
   onOpenInfo: () => void;
@@ -52,7 +52,7 @@ export default function NavBar({ onOpenInfo, skipIntro, onOpenMenu }: NavBarProp
       </Logo>
       <Clock variants={childVariants} />
       <Actions as={motion.ul} variants={childVariants}>
-        <ActionButton icon={<DarkThemeIcon size="30px" />} />
+        <ThemeToggle />
         <ActionButton icon={<InfoIcon />} onClick={onOpenInfo} />
         <HorizontalLine />
         <ActionButton icon={<MoreIcon />} onClick={onOpenMenu} />
