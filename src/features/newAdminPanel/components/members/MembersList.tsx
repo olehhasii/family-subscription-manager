@@ -31,9 +31,11 @@ export default function MembersList({ onNavigate }: MembersListProps) {
 
   return (
     <MembersListContainer>
-      {members?.map((member) => (
-        <Member memberData={member} onEditMember={onNavigate} key={member.id} />
-      ))}
+      {members
+        .sort((a, b) => a.id - b.id)
+        ?.map((member) => (
+          <Member memberData={member} onEditMember={onNavigate} key={member.id} />
+        ))}
     </MembersListContainer>
   );
 }

@@ -40,9 +40,11 @@ export default function Board({ members }: { members: Array<Member> }) {
         <span>{`${groupSettings?.membershipPrice} ${groupSettings?.currency}`} / month</span>
       </BoardHeader>
       <BoardUsers>
-        {members?.map((member) => (
-          <BoardUser user={member} key={member.id} />
-        ))}
+        {members
+          ?.sort((a, b) => a.id - b.id)
+          .map((member) => (
+            <BoardUser user={member} key={member.id} />
+          ))}
       </BoardUsers>
     </StyledBoard>
   );
