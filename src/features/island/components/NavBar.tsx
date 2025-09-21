@@ -1,5 +1,4 @@
 import { easeOut } from 'motion';
-import DarkThemeIcon from '../../../icons/DarkThemeIcon';
 import InfoIcon from '../../../icons/InfoIcon';
 import MoreIcon from '../../../icons/MoreIcon';
 

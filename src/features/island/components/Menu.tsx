@@ -37,6 +37,7 @@ const MenuButton = ({ icon, content, contentWidth = 60, onClick, as = 'button', 
     },
     hovered: {
       backgroundColor: 'white',
+      border: 'var(--border)',
     },
   };
 

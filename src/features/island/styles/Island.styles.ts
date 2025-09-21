@@ -8,6 +8,7 @@ export const StyledIsland = styled.div`
   min-height: 30px;
   background-color: var(--color-bg-main);
   color: var(--color-text-primary);
+  border: var(--border);
 `;
 
 export const Wrapper = styled.div`

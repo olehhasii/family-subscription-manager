@@ -16,6 +16,7 @@ export const Logo = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 100%;
+  border: var(--border);
 `;
 
 export const Actions = styled.ul`

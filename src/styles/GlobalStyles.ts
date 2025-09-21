@@ -70,6 +70,26 @@ const GlobalStyle = styled.createGlobalStyle`
   }
 
   :root {
+    --color-light: #fafafa;
+    --color-dark: #100c08;
+    --color-gray: #757575;
+
+    --color-red: #b02525;
+    --color-green: #15803d;
+    --color-yellow: #ffb84d;
+
+    --color-bg-page: #ffffff;
+    --color-bg-main: #f8f9fa;
+    --color-bg-accent: #e9ecef;
+    --color-bg-secondary: #f1f3f4;
+    --color-bg-primary: #212529;
+
+    --color-text-primary: #212529;
+    --color-text-secondary: #6c757d;
+    --color-text-dark: #ffffff;
+
+    --border: 1px solid oklch(0 0 0 / 0.1);
+
     --text-xs: 0.625rem; /* 10px */
     --text-s: 0.75rem; /* 12px */
     --text-md: 0.875rem; /* 14px */
