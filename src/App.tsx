@@ -8,32 +8,35 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import PublicBoard from './pages/PublicBoard';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './features/auth/ProtectedRoute';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <Toaster richColors />
-      <BrowserRouter>
-        <AuthProvider>
-          <Wrapper>
-            <Routes>
-              <Route index element={<PublicBoard />} />
-              <Route
-                path="admin"
-                element={
-                  <ProtectedRoute>
-                    <AdminPanel />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </Wrapper>
-        </AuthProvider>
-      </BrowserRouter>
-      <GlobalStyle />
+      <ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Toaster richColors />
+        <BrowserRouter>
+          <AuthProvider>
+            <Wrapper>
+              <Routes>
+                <Route index element={<PublicBoard />} />
+                <Route
+                  path="admin"
+                  element={
+                    <ProtectedRoute>
+                      <AdminPanel />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </Wrapper>
+          </AuthProvider>
+        </BrowserRouter>
+        <GlobalStyle />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
