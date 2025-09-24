@@ -33,7 +33,7 @@ export default function Member({ memberData, onEditMember }: MemberProps) {
           <MemberName>{name}</MemberName>
           {isBillable && (
             <MemberPaidDate>
-              {paidUntil ? `Paid until ${getFormattedDate(paidUntil, lang)}` : t.notSpecified}
+              {paidUntil ? `${t.paidUntil} ${getFormattedDate(paidUntil, lang)}` : t.notSpecified}
             </MemberPaidDate>
           )}
         </MemberDetails>
