@@ -12,6 +12,7 @@ import {
 import { getMemberStatus } from '../../../../lib/helpers';
 import { getFormattedDate } from '../../../../lib/dates';
 import { ADMIN_VIEWS, type AdminPanelView } from '../../../../types/adminTypes';
+import { useTranslations } from '../../../../hooks/useTranslation';
 
 interface MemberProps {
   memberData: Member;
@@ -19,9 +20,10 @@ interface MemberProps {
 }
 
 export default function Member({ memberData, onEditMember }: MemberProps) {
+  const { t, lang } = useTranslations();
   const { id, name, paidUntil, isBillable, avatarUrl } = memberData;
 
-  const memberStatus = getMemberStatus(paidUntil);
+  const memberStatus = getMemberStatus(paidUntil, lang);
 
   return (
     <MemberContainer onClick={() => onEditMember(ADMIN_VIEWS.MEMBERS_EDIT, id)} $isBillable={isBillable}>
@@ -30,12 +32,14 @@ export default function Member({ memberData, onEditMember }: MemberProps) {
         <MemberDetails>
           <MemberName>{name}</MemberName>
           {isBillable && (
-            <MemberPaidDate>{paidUntil ? `Paid until ${getFormattedDate(paidUntil)}` : 'Not specified'}</MemberPaidDate>
+            <MemberPaidDate>
+              {paidUntil ? `Paid until ${getFormattedDate(paidUntil, lang)}` : t.notSpecified}
+            </MemberPaidDate>
           )}
         </MemberDetails>
       </MemberHeader>
       <MemberStatus $variant={isBillable ? memberStatus.variant : 'special'}>
-        {isBillable ? memberStatus.label : '💲No need for payments'}
+        {isBillable ? memberStatus.label : t.noNeedForPayments}
       </MemberStatus>
     </MemberContainer>
   );

@@ -4,6 +4,7 @@ import { ModalActionsContainer, ModalContainer, ModalDescription, ModalHeader } 
 import { createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Button from '../elements/Button';
+import { useTranslations } from '../../hooks/useTranslation';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -70,12 +71,14 @@ function ModalActions({ children }: { children: React.ReactNode }) {
 
 function ModalCancelAction() {
   const { setIsOpen } = useModalContext();
+  const { t } = useTranslations();
 
-  return <Button onClick={() => setIsOpen(false)}>Cancel</Button>;
+  return <Button onClick={() => setIsOpen(false)}>{t.cancel}</Button>;
 }
 
 function ModalConfirmAction({ onClick }: { onClick: () => void }) {
   const { setIsOpen } = useModalContext();
+  const { t } = useTranslations();
 
   return (
     <Button
@@ -85,7 +88,7 @@ function ModalConfirmAction({ onClick }: { onClick: () => void }) {
         setIsOpen(false);
       }}
     >
-      Confirm
+      {t.confirm}
     </Button>
   );
 }

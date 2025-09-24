@@ -1,4 +1,5 @@
 import useMembers from '../../../../hooks/useMembers';
+import { useTranslations } from '../../../../hooks/useTranslation';
 import type { AdminPanelView } from '../../../../types/adminTypes';
 import LoadingSpinner from '../../../../ui/elements/LoadingSpinner';
 import { NoMembers } from '../../styles/members/Member.styles';
@@ -11,10 +12,11 @@ interface MembersListProps {
 }
 
 export default function MembersList({ onNavigate }: MembersListProps) {
+  const { t } = useTranslations();
   const { members, isError, isLoading } = useMembers();
 
   if (isError) {
-    return <MembersListContainer>Error loading members</MembersListContainer>;
+    return <MembersListContainer>{t.errorLoadingData}</MembersListContainer>;
   }
 
   if (isLoading) {
@@ -26,7 +28,7 @@ export default function MembersList({ onNavigate }: MembersListProps) {
   }
 
   if (!members || members.length === 0) {
-    return <NoMembers>No members found</NoMembers>;
+    return <NoMembers>{t.noMembers}</NoMembers>;
   }
 
   return (

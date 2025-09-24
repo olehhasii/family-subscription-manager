@@ -9,30 +9,32 @@ import { ADMIN_VIEWS, type AdminPanelView } from '../../../../types/adminTypes';
 import MonthPicker from '../../../../ui/elements/MonthPicker';
 import ErrorContainer from '../../../../ui/elements/ErrorContainer';
 import useMemberForm from '../../../../hooks/useMemberForm';
+import { useTranslations } from '../../../../hooks/useTranslation';
 
 interface CreateMemberFormProps {
   onGoBack: (view: AdminPanelView, id?: number) => void;
 }
 
 export default function CreateMemberForm({ onGoBack }: CreateMemberFormProps) {
+  const { t } = useTranslations();
   const { handleSubmit, setIsBillable, isBillable, isError, isPending } = useMemberForm({ mode: 'create', onGoBack });
 
   if (isError) {
     return (
       <ErrorContainer>
-        <p>Error creating member</p>
-        <Button onClick={() => window.location.reload()}>Retry</Button>
+        <p>{t.errorCreatingMember}</p>
+        <Button onClick={() => window.location.reload()}>{t.retry}</Button>
       </ErrorContainer>
     );
   }
 
   return (
     <Form onSubmit={(event) => handleSubmit(event)}>
-      <Input name="name" placeholder="Oleh" label="Member Name" id="name" size="medium" disabled={isPending} />
+      <Input name="name" placeholder="Oleh" label={t.memberName} id="name" size="medium" disabled={isPending} />
       <Input
         name="email"
         placeholder="example@gmail.com"
-        label="Member email"
+        label={t.memberEmail}
         id="email"
         size="medium"
         disabled={isPending}
@@ -40,17 +42,17 @@ export default function CreateMemberForm({ onGoBack }: CreateMemberFormProps) {
       <ToggleInput
         id="isBillable"
         name="isBillable"
-        label="Is Member Billable?"
+        label={t.isMemberBillable}
         defaultChecked={true}
         checked={isBillable}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsBillable(e.target.checked)}
         disabled={isPending}
       />
       <MonthPicker
-        label="Date until paid"
+        label={t.dateUntilPaid}
         id="paidUntil"
         name="paidUntil"
-        inputText="Select Date"
+        inputText={t.selectDate}
         size="medium"
         disabled={!isBillable}
         fullWidth={true}
@@ -58,7 +60,7 @@ export default function CreateMemberForm({ onGoBack }: CreateMemberFormProps) {
       <ImgInput
         id="avatar"
         name="avatar"
-        label="Member Avatar"
+        label={t.memberAvatar}
         defaultImg={defaultAvatar}
         showUploadedFile
         size="medium"
@@ -66,10 +68,10 @@ export default function CreateMemberForm({ onGoBack }: CreateMemberFormProps) {
       />
       <ActionsContainer align="flex-end">
         <Button type="submit" variant="primary" disabled={isPending}>
-          {isPending ? 'Creating' : 'Add Member'}
+          {isPending ? t.creating : t.addMemberButton}
         </Button>
         <Button onClick={() => onGoBack(ADMIN_VIEWS.MEMBERS_LIST)} disabled={isPending}>
-          Cancel
+          {t.cancel}
         </Button>
       </ActionsContainer>
     </Form>

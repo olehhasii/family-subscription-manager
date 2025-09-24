@@ -4,6 +4,7 @@ import { ADMIN_VIEWS, type AdminPanelView } from '../types/adminTypes';
 import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createMember, updateMember } from '../api/membersApi';
+import { useTranslations } from './useTranslation';
 
 interface UseMemberFormProps {
   mode: 'create' | 'edit';
@@ -21,6 +22,8 @@ interface MemberFormData {
 }
 
 export default function useMemberForm({ mode, member, onGoBack }: UseMemberFormProps) {
+  const { t } = useTranslations();
+
   const [isBillable, setIsBillable] = useState(mode === 'create' ? true : member?.isBillable || false);
   const queryClient = useQueryClient();
 
@@ -33,18 +36,18 @@ export default function useMemberForm({ mode, member, onGoBack }: UseMemberFormP
   // Fix: Change parameter type to MemberFormData
   const validateForm = (memberData: MemberFormData, avatar?: File): boolean => {
     if (avatar && avatar.size > 5 * 1024 * 1024) {
-      toast.error('Avatar file is too large (max 5MB)');
+      toast.error(t.errorAvatar);
       return false;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!memberData.email || !emailRegex.test(memberData.email)) {
-      toast.error('Please enter a valid email address');
+      toast.error(t.errorValidEmail);
       return false;
     }
 
     if (!memberData.name) {
-      toast.error('Please fill in name and email');
+      toast.error(t.errorNameEmail);
       return false;
     }
 
@@ -70,11 +73,11 @@ export default function useMemberForm({ mode, member, onGoBack }: UseMemberFormP
       createMember(newMember, avatar),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['members'] });
-      toast.success('Member Created');
+      toast.success(t.memberCreated);
       onGoBack(ADMIN_VIEWS.MEMBERS_LIST);
     },
     onError: (err: Error) => {
-      toast.error(err.message || 'Error creating member');
+      toast.error(err.message || t.errorCreatingMember);
     },
   });
 
@@ -91,11 +94,11 @@ export default function useMemberForm({ mode, member, onGoBack }: UseMemberFormP
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['members'] });
       queryClient.invalidateQueries({ queryKey: ['member', member?.id] });
-      toast.success('Member Updated');
+      toast.success(t.memberUpdated);
       onGoBack(ADMIN_VIEWS.MEMBERS_LIST);
     },
     onError: (err: Error) => {
-      toast.error(err.message || 'Error updating member');
+      toast.error(err.message || t.errorUpdatingMember);
     },
   });
 

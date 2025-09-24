@@ -7,6 +7,7 @@ import LoginIcon from '../../../icons/LoginIcon';
 import { MenuItem, StyledMenu, StyledMenuButton } from '../styles/Menu.styles';
 import { easeOut, motion } from 'motion/react';
 import { useTheme } from '../../../contexts/ThemeContext';
+import { useTranslations } from '../../../hooks/useTranslation';
 
 interface MenuButtonProps {
   icon: React.ReactNode;
@@ -90,6 +91,7 @@ export default function Menu({
   onOpenAdminLogin: () => void;
 }) {
   const { theme } = useTheme();
+  const { t } = useTranslations();
 
   const iconsColor = {
     default: theme === 'dark' ? '#ffffff' : '#000000',
@@ -118,7 +120,7 @@ export default function Menu({
     <StyledMenu as={motion.ul} variants={menuVariants} initial="initial" animate="animate" exit="exit">
       <MenuButton
         icon={<BackIcon size={24} color={iconsColor.default} variants={iconVariants} />}
-        content="Back"
+        content={t.back}
         contentWidth={50}
         onClick={onCloseMenu}
         theme={theme}
@@ -128,21 +130,21 @@ export default function Menu({
         contentWidth={80}
         as="link"
         link="https://github.com/olehhasii/family-subscription-manager"
-        content="Github Repo"
+        content={t.githubRepo}
         theme={theme}
       />
       <MenuButton
         icon={<ContactMeIcon size={24} color={iconsColor.default} variants={iconVariants} />}
-        contentWidth={85}
+        contentWidth={95}
         as="link"
         link="https://www.linkedin.com/in/oleh-hasii/"
-        content="Contact me"
+        content={t.contactMe}
         theme={theme}
       />
       <MenuButton
         icon={<LoginIcon size={24} color={iconsColor.default} variants={iconVariants} />}
         contentWidth={80}
-        content="Admin Panel"
+        content={t.adminPanel}
         onClick={onOpenAdminLogin}
         theme={theme}
       />

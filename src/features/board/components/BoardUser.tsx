@@ -6,12 +6,15 @@ import { easeOut, motion } from 'motion/react';
 import type { Member } from '../../../types/membersTypes';
 import { getFormattedDate } from '../../../lib/dates';
 import { getMemberStatus } from '../../../lib/helpers';
+import { useTranslations } from '../../../hooks/useTranslation';
 
 interface BoardUserProps {
   user: Member;
 }
 
 export default function BoardUser({ user }: BoardUserProps) {
+  const { t, lang } = useTranslations();
+
   const boardUserVariants: Variants = {
     hidden: {
       y: 200,
@@ -27,7 +30,7 @@ export default function BoardUser({ user }: BoardUserProps) {
   };
 
   const { name, paidUntil, isBillable, avatarUrl } = user;
-  const memberStatus = getMemberStatus(paidUntil);
+  const memberStatus = getMemberStatus(paidUntil, lang);
 
   return (
     <StyledBoardUser as={motion.div} variants={boardUserVariants}>
@@ -37,14 +40,14 @@ export default function BoardUser({ user }: BoardUserProps) {
           <UserName>{name}</UserName>
           {isBillable && (
             <UserPaidDate $variant={isBillable ? memberStatus.variant : 'special'}>
-              {paidUntil ? `Paid untill ${getFormattedDate(paidUntil)}` : 'Not specified'}
+              {paidUntil ? `${t.paidUntil} ${getFormattedDate(paidUntil, lang)}` : t.notSpecified}
             </UserPaidDate>
           )}
         </UserInfo>
       </UserHeader>
 
       <UserStatus $variant={isBillable ? memberStatus.variant : 'special'}>
-        {isBillable ? memberStatus.label : '💲No need for payments'}
+        {isBillable ? memberStatus.label : t.noNeedForPayments}
       </UserStatus>
     </StyledBoardUser>
   );

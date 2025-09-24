@@ -1,8 +1,4 @@
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-});
+import { getTranslations } from '../translations/translations';
 
 export const getClosestNextMonth = () => {
   const currentDate = new Date();
@@ -12,13 +8,24 @@ export const getClosestNextMonth = () => {
   return new Date(firstDateOfNextMonth).toISOString().slice(0, 10);
 };
 
-export const getFormattedDate = (date: string) => {
+const createDateFormatter = (locale: string) => {
+  return new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
+export const getFormattedDate = (date: string, lang: 'UA' | 'EN' = 'EN') => {
   const dateObj = new Date(date);
+
+  const locale = lang === 'UA' ? 'uk-UA' : 'en-US';
+  const dateFormatter = createDateFormatter(locale);
 
   return dateFormatter.format(dateObj);
 };
 
-export const checkDateStatus = (paidUntillDate: Date) => {
+export const checkDateStatus = (paidUntillDate: Date, lang: 'UA' | 'EN' = 'EN') => {
   const currentDate = new Date();
 
   const differenceInDates = paidUntillDate.getTime() - currentDate.getTime();
@@ -26,13 +33,15 @@ export const checkDateStatus = (paidUntillDate: Date) => {
   const oneDayInMs = 1000 * 60 * 60 * 24;
   const diffInDays = Math.round(differenceInDates / oneDayInMs);
 
+  const t = getTranslations(lang);
+
   if (diffInDays <= 0) {
-    return { label: 'Payment is overdue', variant: 'danger' };
+    return { label: t.overdue, variant: 'danger' };
   }
 
   if (diffInDays <= 7) {
-    return { label: 'Due soon', variant: 'due' };
+    return { label: t.expiringSoon, variant: 'due' };
   }
 
-  return { label: 'Up to date', variant: 'success' };
+  return { label: t.paid, variant: 'success' };
 };

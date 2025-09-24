@@ -1,6 +1,6 @@
 import type { IconComponentProps } from '../types/types';
 
-export default function LighThemeIcon({ size = 40, color = 'currentColor', ...props }: IconComponentProps) {
+export default function LighThemeIcon({ size = 40, color = '#000000', ...props }: IconComponentProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
       <path

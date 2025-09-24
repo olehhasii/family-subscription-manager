@@ -10,8 +10,10 @@ import { updateGroupSettings } from '../../../../api/groupApi';
 import { toast } from 'sonner';
 import type { GroupType } from '../../../../types/adminTypes';
 import ErrorContainer from '../../../../ui/elements/ErrorContainer';
+import { useTranslations } from '../../../../hooks/useTranslation';
 
 export default function GroupSettingsForm() {
+  const { t } = useTranslations();
   const { groupSettings, isError: isGroupError, isLoading: isGroupLoading } = useGroup();
   const { members, isError: isMembersError, isLoading: isMembersLoading } = useMembers();
 
@@ -19,11 +21,11 @@ export default function GroupSettingsForm() {
   const { mutate, isPending } = useMutation({
     mutationFn: ({ data, groupId }: { data: GroupType; groupId: number }) => updateGroupSettings(data, groupId),
     onSuccess: () => {
-      toast.success('Group Settings Updated');
+      toast.success(t.groupSettingsUpdated);
       queryClient.invalidateQueries({ queryKey: ['group'] });
     },
     onError: (err: Error) => {
-      toast.error(err.message || 'Error updating group');
+      toast.error(err.message || t.errorUpdatingGroup);
     },
   });
 
@@ -40,7 +42,7 @@ export default function GroupSettingsForm() {
     event.preventDefault();
 
     if (!groupSettings?.id) {
-      toast.error('Group data not loaded');
+      toast.error(t.groupDataNotLoaded);
       return;
     }
 
@@ -51,12 +53,12 @@ export default function GroupSettingsForm() {
     const ownerId = formData.get('ownerId') as string;
 
     if (!groupName.trim()) {
-      toast.error('Group name is required');
+      toast.error(t.groupNameRequired);
       return;
     }
 
     if (Number(membershipPrice) <= 0) {
-      toast.error('Membership price must be positive');
+      toast.error(t.membershipPricePositive);
       return;
     }
 
@@ -79,7 +81,7 @@ export default function GroupSettingsForm() {
   if (isGroupError || isMembersError) {
     return (
       <ErrorContainer>
-        <p>Error loading data</p>
+        <p>{t.errorLoadingData}</p>
         <Button onClick={() => window.location.reload()}>Retry</Button>
       </ErrorContainer>
     );
@@ -90,7 +92,7 @@ export default function GroupSettingsForm() {
       <Input
         name="groupName"
         id="groupName"
-        label="Group Name"
+        label={t.groupName}
         placeholder="Youtube"
         size="medium"
         defaultValue={groupSettings?.groupName}
@@ -98,7 +100,7 @@ export default function GroupSettingsForm() {
       <Input
         name="membershipPrice"
         id="membershipPrice"
-        label="Membership Price (UAH)"
+        label={t.membershipPrice}
         placeholder="45 "
         type="number"
         size="medium"
@@ -107,14 +109,14 @@ export default function GroupSettingsForm() {
       <Select
         id="ownerId"
         name="ownerId"
-        label="Owner"
+        label={t.owner}
         size="medium"
         contentHeader="Members"
         options={ownerOptions}
         defaultOption={defaultOwner}
       />
       <Button type="submit" variant="primary" disabled={isPending}>
-        {isPending ? <LoadingSpinner size={24} /> : 'Update'}
+        {isPending ? <LoadingSpinner size={24} /> : t.update}
       </Button>
     </Form>
   );

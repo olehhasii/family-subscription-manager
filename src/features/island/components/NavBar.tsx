@@ -6,8 +6,10 @@ import Clock from './Clock';
 
 import { motion, type Variants } from 'motion/react';
 import ActionButton from '../../../ui/ActionButton';
-import { Actions, HorizontalLine, Logo, StyledNav } from '../styles/NavBar.styles';
+import { Actions, HorizontalLine, StyledNav } from '../styles/NavBar.styles';
 import ThemeToggle from './ThemeToggle';
+import { FlagUA, FlagUK } from '../../../icons/Flags';
+import LanguageToggle from './LanguageToggle';
 
 interface NavBarProps {
   onOpenInfo: () => void;
@@ -47,9 +49,10 @@ export default function NavBar({ onOpenInfo, skipIntro, onOpenMenu }: NavBarProp
 
   return (
     <StyledNav as={motion.nav} variants={parentVariants} initial={'hidden'} animate="visible">
-      <Logo as={motion.div} variants={childVariants}>
-        🎧
-      </Logo>
+      <motion.div variants={childVariants}>
+        <LanguageToggle />
+      </motion.div>
+
       <Clock variants={childVariants} />
       <Actions as={motion.ul} variants={childVariants}>
         <ThemeToggle />

@@ -1,4 +1,5 @@
 import { useLogout } from '../../../hooks/useLogout';
+import { useTranslations } from '../../../hooks/useTranslation';
 import { ADMIN_VIEWS, type AdminPanelView } from '../../../types/adminTypes';
 import { AdminNavButton, AdminNavGroup, AdminNavigationContainer } from '../styles/AdminNavigation..styles';
 
@@ -9,6 +10,7 @@ interface AdminNavigationProps {
 
 export default function AdminNavigation({ onNavigate, activeView }: AdminNavigationProps) {
   const logoutMutation = useLogout();
+  const { t } = useTranslations();
 
   const handleLogout = () => {
     logoutMutation.mutate();
@@ -21,7 +23,7 @@ export default function AdminNavigation({ onNavigate, activeView }: AdminNavigat
           $active={activeView === ADMIN_VIEWS.MEMBERS_LIST}
           onClick={() => onNavigate(ADMIN_VIEWS.MEMBERS_LIST)}
         >
-          🧔‍♂️Members
+          🧔‍♂️{t.members}
         </AdminNavButton>
       </AdminNavGroup>
       <AdminNavGroup>
@@ -29,11 +31,11 @@ export default function AdminNavigation({ onNavigate, activeView }: AdminNavigat
           $active={activeView === ADMIN_VIEWS.GROUP_SETTINGS}
           onClick={() => onNavigate(ADMIN_VIEWS.GROUP_SETTINGS)}
         >
-          ⚙️Board Settings
+          ⚙️{t.boardSettings}
         </AdminNavButton>
       </AdminNavGroup>
       <AdminNavGroup>
-        <AdminNavButton onClick={handleLogout}>🏃Logout</AdminNavButton>
+        <AdminNavButton onClick={handleLogout}>{t.logout}</AdminNavButton>
       </AdminNavGroup>
     </AdminNavigationContainer>
   );

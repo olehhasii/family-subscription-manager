@@ -4,6 +4,7 @@ import Modal from '../../../../ui/modal/Modal';
 import { deleteMember } from '../../../../api/membersApi';
 import { toast } from 'sonner';
 import LoadingSpinner from '../../../../ui/elements/LoadingSpinner';
+import { useTranslations } from '../../../../hooks/useTranslation';
 
 export default function DeleteMemberModal({
   memberId,
@@ -14,6 +15,7 @@ export default function DeleteMemberModal({
   onGoBack: () => void;
   avatarUrl: string;
 }) {
+  const { t } = useTranslations();
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
@@ -21,27 +23,25 @@ export default function DeleteMemberModal({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['members'] });
       queryClient.invalidateQueries({ queryKey: ['member', memberId] });
-      toast.success('Member deleted');
+      toast.success(t.memberDeleted);
       onGoBack();
     },
     onError: () => {
-      toast.error('Error deleting member');
+      toast.error(t.errorDeletingMember);
     },
   });
 
   return (
     <Modal>
       <Modal.ModalTrigger>
-        <Button variant="danger">Delete Member</Button>
+        <Button variant="danger">{t.deleteMember}</Button>
       </Modal.ModalTrigger>
       <Modal.ModalContent>
         {isPending && <LoadingSpinner />}
         {!isPending && (
           <>
-            <Modal.ModalHeader>Are you absolutely sure?</Modal.ModalHeader>
-            <Modal.ModalDescription>
-              This action cannot be undone. This will permanently delete member and remove it from database.
-            </Modal.ModalDescription>
+            <Modal.ModalHeader>{t.areYouAbsolutelySure}</Modal.ModalHeader>
+            <Modal.ModalDescription>{t.deleteConfirmation}</Modal.ModalDescription>
             <Modal.ModalActions>
               <Modal.ModalCancelAction />
               <Modal.ModalConfirmAction onClick={() => mutate({ id: memberId, avatarUrl })} />

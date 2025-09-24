@@ -1,6 +1,10 @@
+import { getTranslations } from '../translations/translations';
 import type { MemberStatusesType } from '../types/membersTypes';
 
-export const getMemberStatus = (paidUntil: string): { label: string; variant: MemberStatusesType } => {
+export const getMemberStatus = (
+  paidUntil: string,
+  lang: 'UA' | 'EN' = 'EN'
+): { label: string; variant: MemberStatusesType } => {
   const currentDate = new Date();
   const paidUntilDate = new Date(paidUntil);
 
@@ -10,17 +14,19 @@ export const getMemberStatus = (paidUntil: string): { label: string; variant: Me
 
   const diffInDays = Math.round(differenceInDates / oneDayInMs);
 
+  const t = getTranslations(lang);
+
   if (!paidUntil) {
-    return { label: '❔Unknown', variant: 'unknown' };
+    return { label: t.unknown, variant: 'unknown' };
   }
 
   if (diffInDays <= 0) {
-    return { label: '🆘 Overdue', variant: 'overdue' };
+    return { label: t.overdue, variant: 'overdue' };
   }
 
   if (diffInDays <= 7) {
-    return { label: '⚠️ Due soon', variant: 'due' };
+    return { label: t.expiringSoon, variant: 'due' };
   }
 
-  return { label: '✅ Up to date', variant: 'ok' };
+  return { label: t.paid, variant: 'ok' };
 };

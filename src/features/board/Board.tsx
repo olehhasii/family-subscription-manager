@@ -4,8 +4,11 @@ import { BoardHeader, BoardUsers, StyledBoard } from './styles/Board.styles';
 import { motion } from 'motion/react';
 import useGroup from '../../hooks/useGroup';
 import type { Member } from '../../types/membersTypes';
+import { useTranslations } from '../../hooks/useTranslation';
 
 export default function Board({ members }: { members: Array<Member> }) {
+  const { t } = useTranslations();
+
   const boardVariants: Variants = {
     hidden: {
       y: 700,
@@ -30,14 +33,16 @@ export default function Board({ members }: { members: Array<Member> }) {
   const { groupSettings, isError: isGroupSettingsError } = useGroup();
 
   if (isGroupSettingsError) {
-    return <p>Error Loading Members</p>;
+    return <p>{t.errorLoadingData}</p>;
   }
 
   return (
     <StyledBoard as={motion.div} variants={boardVariants} initial="hidden" animate="visible">
       <BoardHeader>
         <h2>{groupSettings?.groupName}</h2>
-        <span>{`${groupSettings?.membershipPrice} ${groupSettings?.currency}`} / month</span>
+        <span>
+          {`${groupSettings?.membershipPrice} ${groupSettings?.currency}`} / {t.month}
+        </span>
       </BoardHeader>
       <BoardUsers>
         {members

@@ -13,6 +13,7 @@ import defaultAvatar from '../../../../assets/profile.png';
 import useMemberForm from '../../../../hooks/useMemberForm';
 import ActionsContainer from '../../../../ui/elements/ActionsContainer';
 import DeleteMemberModal from './DeleteMemberModal';
+import { useTranslations } from '../../../../hooks/useTranslation';
 
 interface EditMemberFormProps {
   onGoBack: (view: AdminPanelView, id?: number) => void;
@@ -20,11 +21,13 @@ interface EditMemberFormProps {
 }
 
 export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMemberFormProps) {
+  const { t } = useTranslations();
+
   if (!selectedMemberId) {
     return (
       <ErrorContainer>
-        <p>Error getting member data</p>
-        <Button onClick={() => window.location.reload()}>Retry</Button>
+        <p>{t.errorGettingMemberData}</p>
+        <Button onClick={() => window.location.reload()}>{t.retry}</Button>
       </ErrorContainer>
     );
   }
@@ -46,8 +49,8 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
   if (isMemberError || isUpdatingError) {
     return (
       <ErrorContainer>
-        <p>Error getting member data</p>
-        <Button onClick={() => window.location.reload()}>Retry</Button>
+        <p>{t.errorGettingMemberData}</p>
+        <Button onClick={() => window.location.reload()}>{t.retry}</Button>
       </ErrorContainer>
     );
   }
@@ -57,17 +60,17 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
       <ToggleInput
         id="isBillable"
         name="isBillable"
-        label="Is Member Billable?"
+        label={t.isMemberBillable}
         /* defaultChecked={true} */
         checked={isBillable}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => setIsBillable(e.target.checked)}
         disabled={isUpdating}
       />
       <MonthPicker
-        label="Date until paid"
+        label={t.dateUntilPaid}
         id="paidUntil"
         name="paidUntil"
-        inputText="Select Date"
+        inputText={t.selectDate}
         size="medium"
         disabled={!isBillable}
         fullWidth={true}
@@ -76,7 +79,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
       <Input
         name="name"
         placeholder="Oleh"
-        label="Member Name"
+        label={t.memberName}
         id="name"
         size="medium"
         disabled={isUpdating}
@@ -85,7 +88,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
       <Input
         name="email"
         placeholder="example@gmail.com"
-        label="Member email"
+        label={t.memberEmail}
         id="email"
         size="medium"
         disabled={isUpdating}
@@ -94,7 +97,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
       <ImgInput
         id="avatar"
         name="avatar"
-        label="Member Avatar"
+        label={t.memberAvatar}
         defaultImg={member.avatarUrl || defaultAvatar}
         showUploadedFile
         size="medium"
@@ -102,7 +105,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
       />
       <ActionsContainer align="flex-end">
         <Button type="submit" variant="primary" disabled={isUpdating}>
-          {isUpdating ? 'Updating' : 'Update Member'}
+          {isUpdating ? t.updating : t.updateMember}
         </Button>
         {/* <Button disabled={isUpdating} variant="danger">
           Delete Member
@@ -113,7 +116,7 @@ export default function EditMemberForm({ onGoBack, selectedMemberId }: EditMembe
           avatarUrl={member.avatarUrl}
         />
         <Button onClick={() => onGoBack(ADMIN_VIEWS.MEMBERS_LIST)} disabled={isUpdating}>
-          Cancel
+          {t.cancel}
         </Button>
       </ActionsContainer>
     </Form>
