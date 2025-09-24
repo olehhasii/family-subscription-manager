@@ -8,7 +8,6 @@ import { motion, type Variants } from 'motion/react';
 import ActionButton from '../../../ui/ActionButton';
 import { Actions, HorizontalLine, StyledNav } from '../styles/NavBar.styles';
 import ThemeToggle from './ThemeToggle';
-import { FlagUA, FlagUK } from '../../../icons/Flags';
 import LanguageToggle from './LanguageToggle';
 
 interface NavBarProps {
