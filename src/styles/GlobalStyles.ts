@@ -27,7 +27,7 @@ const GlobalStyle = styled.createGlobalStyle`
     min-height: 100svh;
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
-    overflow: hidden;
+    /* overflow: hidden; */
     -webkit-font-smoothing: antialiased;
     transition:
       background-color 0.3s ease,

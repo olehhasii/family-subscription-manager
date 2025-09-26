@@ -11,7 +11,7 @@ interface InfoProps {
 }
 
 export default function Info({ onCloseInfo }: InfoProps) {
-  const { t, lang } = useTranslations();
+  const { t } = useTranslations();
 
   return (
     <>
@@ -19,7 +19,8 @@ export default function Info({ onCloseInfo }: InfoProps) {
       <InfoWrapper
         as={motion.div}
         initial={{ width: '360px', height: '60px' }}
-        animate={{ width: '360px', height: lang === 'UA' ? '695px' : '610px' }}
+        /*  animate={{ width: '360px', height: lang === 'UA' ? 'auto' : '610px' }} */
+        animate={{ width: '360px', height: 'auto' }}
         exit={{ height: '60px', width: '360px', transition: { delay: 0.3 } }}
       >
         <CloseButton onClose={onCloseInfo} />

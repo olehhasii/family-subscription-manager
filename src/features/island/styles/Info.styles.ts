@@ -7,6 +7,7 @@ export const InfoWrapper = styled.div`
   position: absolute;
   border-radius: var(--spacing-28);
   padding-inline: var(--spacing-16);
+  padding-bottom: 10px;
   max-width: 360px;
   top: 50%;
   left: 50%;
@@ -22,7 +23,7 @@ export const InfoImgWrapper = styled.div`
     border-top-right-radius: var(--spacing-28);
     border-top-left-radius: var(--spacing-28);
     width: 360px;
-    height: 240px;
+    height: 220px;
     object-fit: cover;
   }
 `;
