@@ -10,7 +10,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './features/auth/ProtectedRoute';
 import { ThemeProvider } from './contexts/ThemeContext';
 import LanguageProvider from './contexts/LanguageContext';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const queryClient = new QueryClient();
 
